@@ -36,4 +36,33 @@ jobs:
       with:
         name: centum
         path: dist/*
- 
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build  # Ensure the build job runs first
+    if: github.repository_owner == 'yourusername' && (github.event_name == 'release' || github.event_name == 'workflow_dispatch')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download built source and wheel packages
+        uses: actions/download-artifact@v4
+        with:
+          name: centum
+          path: dist
+
+      - name: Publish to Test PyPI
+        if: github.event_name == 'push'
+        uses: pypa/gh-action-pypi-publish@v1.10.3
+        with:
+          repository_url: https://test.pypi.org/legacy/
+          username: __token__  # Required for API token
+          password: ${{ secrets.PYPI_TOKEN }}  # Use the secret here
+
+      - name: Publish to PyPI
+        if: success() && (github.event_name == 'release' || github.event_name == 'workflow_dispatch')
+        uses: pypa/gh-action-pypi-publish@v1.10.3
+        with:
+          repository_url: https://upload.pypi.org/legacy/
+          username: __token__  # Required for API token
+          password: ${{ secrets.PYPI_TOKEN }}  # Use the secret here
