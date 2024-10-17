@@ -57,7 +57,7 @@ jobs:
         with:
           repository_url: https://test.pypi.org/legacy/
           username: __token__  # Required for API token
-          password: ${{ secrets.PYPI_TOKEN }}  # Use the secret here
+          password: ${{ secrets.TEST_PYPI_TOKEN }}  # Use the secret here
 
       - name: Publish to PyPI
         # if: success() && (github.event_name == 'release' || github.event_name == 'workflow_dispatch')
