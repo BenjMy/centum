@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.PYPI_TOKEN }}  # Use the secret here
 
       - name: Publish to PyPI
-        if: success() && (github.event_name == 'release' || github.event_name == 'workflow_dispatch')
+        # if: success() && (github.event_name == 'release' || github.event_name == 'workflow_dispatch')
         uses: pypa/gh-action-pypi-publish@v1.10.3
         with:
           repository_url: https://upload.pypi.org/legacy/
