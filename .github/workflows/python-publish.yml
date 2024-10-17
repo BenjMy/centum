@@ -3,7 +3,10 @@ name: Publish Python Package
 on:
   push:
     branches:
-      - master
+      - main
+  release:
+    types: [published]
+  workflow_dispatch:  # Allow manual triggering
 
 jobs:
   build:
