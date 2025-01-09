@@ -1,6 +1,0 @@
-name: centum
-dependencies:
-  - python=3.10  # Specify Python 3.10
-  - setuptools
-  - wheel
- 
