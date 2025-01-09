@@ -1,10 +1,11 @@
-name: deploy-doc
+name: Deploy-doc
 
 # Only run this when the main branch changes
 on:
   push:
     branches:
     - main
+  workflow_dispatch:  # Allow manual triggering
 
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
