@@ -32,8 +32,6 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4@
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
-        publish_dir: ./_build/html
-        # Ensure the action checks out the gh-pages branch before pushing
-        allow_empty_commit: true
-        branch: gh-pages
+        publish_dir: ./public
+
         
