@@ -23,6 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements_doc.txt
+        python install setup.py
     # Build the book
     - name: Build the book
       run: |
@@ -31,7 +32,7 @@ jobs:
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.5.9
       with:
-        github_token: ${{ secrets.DOC_TOKEN}}
+        github_token: ${{secrets.DOC_TOKEN}}
         publish_dir: ./docs/_build/html/
         publish_branch: gh-pages  # Correct input name
         allow_empty_commit: true
