@@ -29,20 +29,20 @@ jobs:
 
     - name: Clean old files
       run: rm -rf dist
-      
+
     - name: Build package
       run: |
-        python setup.py sdist bdist_wheel
+        python setup.py bdist_wheel  # Only build the .whl file
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: centum
-        path: dist  # Upload the freshly built artifacts
+        path: dist/*.whl  # Upload only the .whl file
 
   publish:
     runs-on: ubuntu-latest
-    needs: build  # Ensure the build job runs first
+    needs: build
     if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout code
@@ -52,15 +52,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: centum
-          path: dist  # Ensure only the latest artifacts are downloaded
-
-      - name: Publish to Test PyPI
-        if: github.event_name == 'push'
-        uses: pypa/gh-action-pypi-publish@v1.10.3
-        with:
-          repository_url: https://test.pypi.org/legacy/
-          username: __token__  # Required for API token
-          password: ${{ secrets.TEST_PYPI_TOKEN }}
+          path: dist  # Download the .whl artifact
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@v1.10.3
