@@ -3,4 +3,7 @@ dependencies:
   - python>=3.9
   - setuptools
   - wheel
+  - xarray
+  - rioxarray
+  - geopandas
  
