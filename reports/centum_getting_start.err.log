@@ -15,22 +15,26 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-
-from centum.delineation import ETAnalysis
-import matplotlib.pyplot as plt
+from centum import plotting as pltC
+import numpy as np
+import xarray as xr
 
 from centum.irrigation_district import IrrigationDistrict 
-from centum import irrigation_district as irr_geo_tools 
 
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mImportError[0m                               Traceback (most recent call last)
-Cell [0;32mIn[3], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mcentum[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdelineation[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m ETAnalysis
-[1;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mplt[39;00m
-[1;32m      4[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mcentum[39;00m[38;5;21;01m.[39;00m[38;5;21;01mirrigation_district[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m IrrigationDistrict 
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[2], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mcentum[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m plotting [38;5;28;01mas[39;00m pltC
+[1;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
+[1;32m      3[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mxarray[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mxr[39;00m
 
-[0;31mImportError[0m: cannot import name 'ETAnalysis' from 'centum.delineation' (/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/centum/delineation.py)
+File [0;32m/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/centum-0.1.4-py3.10.egg/centum/__init__.py:3[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mcentum[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdelineation[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mcentum[39;00m[38;5;21;01m.[39;00m[38;5;21;01mirrigation_district[39;00m
+[0;32m----> 3[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mplotting[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'plotting'
 
