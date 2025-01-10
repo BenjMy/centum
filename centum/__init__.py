@@ -1,1 +1,1 @@
-import centum
+import centum.delineation
