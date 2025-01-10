@@ -1,6 +1,14 @@
 [![pages-build-deployment](https://github.com/BenjMy/centum/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/BenjMy/centum/actions/workflows/pages/pages-build-deployment)
 [![Publish Python Package](https://github.com/BenjMy/centum/actions/workflows/python-publish.yml/badge.svg)](https://github.com/BenjMy/centum/actions/workflows/python-publish.yml)
 
+
+## 📥 Installation
+Install Centum via pip:
+
+```bash
+pip install centum
+
+
 # 💦  Centum
 Centum, derived from the Latin word for "a hundred," is a Python package designed to streamline water accounting through energy and water balance modeling. It equips users with tools to enhance water use efficiency, detect illegal water pumping, and protect essential mountain ecosystems, addressing key water management challenges.
 
@@ -21,8 +29,3 @@ Centum relies on two main models:
 - Illegal Water Pumping Detection: Identify unsanctioned water use.
 - Ecosystem Resilience: Assess ecosystem drought resilience and green water footprint, aiding in ecosystem protection.
 
-## 📥 Installation
-Install Centum via pip:
-
-```bash
-pip install centum
