@@ -167,7 +167,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">API documentation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="_autosummary/centum.html">centum</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="_autosummary/centum.html">centum</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/centum.delineation.html">centum.delineation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/centum.irrigation_district.html">centum.irrigation_district</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/centum.plotting.html">centum.plotting</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 </ul>
@@ -315,7 +320,22 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delineation">Delineation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-centum.delineation">Delineation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.ETa_name"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.ETa_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.ETp_name"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.ETp_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.threshold_local"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.threshold_local</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.threshold_regional"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.threshold_regional</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.stat"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.stat</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.compute_bool_threshold_decision_local"><code class="docutils literal notranslate"><span class="pre">compute_bool_threshold_decision_local()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.compute_bool_threshold_decision_regional"><code class="docutils literal notranslate"><span class="pre">compute_bool_threshold_decision_regional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.compute_ratio_ETap_regional"><code class="docutils literal notranslate"><span class="pre">compute_ratio_ETap_regional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.compute_rolling_time_mean"><code class="docutils literal notranslate"><span class="pre">compute_rolling_time_mean()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.define_decision_thresholds"><code class="docutils literal notranslate"><span class="pre">define_decision_thresholds()</span></code></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -337,8 +357,166 @@
 </tbody>
 </table>
 </div>
-<section id="delineation">
-<h2>Delineation<a class="headerlink" href="#delineation" title="Link to this heading">#</a></h2>
+<section id="module-centum.delineation">
+<span id="delineation"></span><h2>Delineation<a class="headerlink" href="#module-centum.delineation" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysisConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">ETAnalysisConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ETa_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACT.</span> <span class="pre">ETRA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ETp_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ETp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_local</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_regional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mean'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#centum.delineation.ETAnalysisConfig" title="Link to this definition">#</a></dt>
+<dd><p>Configuration class for ET analysis parameters.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysisConfig.ETa_name">
+<span class="sig-name descname"><span class="pre">ETa_name</span></span><a class="headerlink" href="#centum.delineation.ETAnalysisConfig.ETa_name" title="Link to this definition">#</a></dt>
+<dd><p>Name of the actual ETa variable in the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysisConfig.ETp_name">
+<span class="sig-name descname"><span class="pre">ETp_name</span></span><a class="headerlink" href="#centum.delineation.ETAnalysisConfig.ETp_name" title="Link to this definition">#</a></dt>
+<dd><p>Name of the reference ETp variable in the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysisConfig.threshold_local">
+<span class="sig-name descname"><span class="pre">threshold_local</span></span><a class="headerlink" href="#centum.delineation.ETAnalysisConfig.threshold_local" title="Link to this definition">#</a></dt>
+<dd><p>Threshold for local ETa/ETp decisions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysisConfig.threshold_regional">
+<span class="sig-name descname"><span class="pre">threshold_regional</span></span><a class="headerlink" href="#centum.delineation.ETAnalysisConfig.threshold_regional" title="Link to this definition">#</a></dt>
+<dd><p>Threshold for regional ETa/ETp decisions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysisConfig.stat">
+<span class="sig-name descname"><span class="pre">stat</span></span><a class="headerlink" href="#centum.delineation.ETAnalysisConfig.stat" title="Link to this definition">#</a></dt>
+<dd><p>Statistical measure to compute (e.g., ‘mean’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="centum.delineation.compute_bool_threshold_decision_local">
+<span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">compute_bool_threshold_decision_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#centum.delineation.ETAnalysisConfig" title="centum.delineation.ETAnalysisConfig"><span class="pre">ETAnalysisConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.compute_bool_threshold_decision_local" title="Link to this definition">#</a></dt>
+<dd><p>Compute a boolean threshold decision for local ETa/ETp changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The xarray Dataset containing ETa/ETp ratio changes.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#centum.delineation.ETAnalysisConfig" title="centum.delineation.ETAnalysisConfig"><em>ETAnalysisConfig</em></a>) – Configuration object containing analysis parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated dataset with the boolean threshold decision for local changes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="centum.delineation.compute_bool_threshold_decision_regional">
+<span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">compute_bool_threshold_decision_regional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#centum.delineation.ETAnalysisConfig" title="centum.delineation.ETAnalysisConfig"><span class="pre">ETAnalysisConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.compute_bool_threshold_decision_regional" title="Link to this definition">#</a></dt>
+<dd><p>Compute a boolean threshold decision for regional ETa/ETp changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The xarray Dataset containing ETa/ETp ratio changes.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#centum.delineation.ETAnalysisConfig" title="centum.delineation.ETAnalysisConfig"><em>ETAnalysisConfig</em></a>) – Configuration object containing analysis parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated dataset with the boolean threshold decision for regional changes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="centum.delineation.compute_ratio_ETap_regional">
+<span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">compute_ratio_ETap_regional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#centum.delineation.ETAnalysisConfig" title="centum.delineation.ETAnalysisConfig"><span class="pre">ETAnalysisConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.compute_ratio_ETap_regional" title="Link to this definition">#</a></dt>
+<dd><p>Compute the regional ETa/ETp ratio and its mean over specified dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The xarray Dataset containing ETa and ETp variables.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#centum.delineation.ETAnalysisConfig" title="centum.delineation.ETAnalysisConfig"><em>ETAnalysisConfig</em></a>) – Configuration object containing analysis parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated dataset with the computed ETa/ETp ratio and its mean.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="centum.delineation.compute_rolling_time_mean">
+<span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">compute_rolling_time_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.compute_rolling_time_mean" title="Link to this definition">#</a></dt>
+<dd><p>Compute the rolling mean over time for the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The xarray Dataset for which to compute the rolling mean.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated dataset with the rolling mean computed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="centum.delineation.define_decision_thresholds">
+<span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">define_decision_thresholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#centum.delineation.ETAnalysisConfig" title="centum.delineation.ETAnalysisConfig"><span class="pre">ETAnalysisConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.define_decision_thresholds" title="Link to this definition">#</a></dt>
+<dd><p>Define local and regional decision thresholds for ETa/ETp analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The xarray Dataset for analysis.</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#centum.delineation.ETAnalysisConfig" title="centum.delineation.ETAnalysisConfig"><em>ETAnalysisConfig</em></a>) – Configuration object containing analysis parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated dataset with both local and regional threshold decisions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -407,7 +585,22 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delineation">Delineation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-centum.delineation">Delineation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.ETa_name"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.ETa_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.ETp_name"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.ETp_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.threshold_local"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.threshold_local</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.threshold_regional"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.threshold_regional</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysisConfig.stat"><code class="docutils literal notranslate"><span class="pre">ETAnalysisConfig.stat</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.compute_bool_threshold_decision_local"><code class="docutils literal notranslate"><span class="pre">compute_bool_threshold_decision_local()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.compute_bool_threshold_decision_regional"><code class="docutils literal notranslate"><span class="pre">compute_bool_threshold_decision_regional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.compute_ratio_ETap_regional"><code class="docutils literal notranslate"><span class="pre">compute_ratio_ETap_regional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.compute_rolling_time_mean"><code class="docutils literal notranslate"><span class="pre">compute_rolling_time_mean()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.define_decision_thresholds"><code class="docutils literal notranslate"><span class="pre">define_decision_thresholds()</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

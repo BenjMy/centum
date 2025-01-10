@@ -167,7 +167,12 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api/centum.html">API documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/_autosummary/centum.html">centum</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/_autosummary/centum.html">centum</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/_autosummary/centum.delineation.html">centum.delineation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/_autosummary/centum.irrigation_district.html">centum.irrigation_district</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/_autosummary/centum.plotting.html">centum.plotting</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 </ul>
@@ -342,21 +347,122 @@ date: 2025/01/10</p></li>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Installing Centum</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>Centum
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>centum
 </pre></div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>Centum
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install centum</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>../setup.py<span class="w"> </span>install
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: Ignored the following versions that require a different python version: 0.1 Requires-Python &gt;=3.10</span>
-<span class=" -Color -Color-Red">ERROR: Could not find a version that satisfies the requirement Centum (from versions: none)</span>
-<span class=" -Color -Color-Red">ERROR: No matching distribution found for Centum</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No parent package detected, impossible to derive `name`
+running install
+/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/setuptools/command/easy_install.py:144: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running bdist_egg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running egg_info
+creating UNKNOWN.egg-info
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>writing UNKNOWN.egg-info/PKG-INFO
+writing dependency_links to UNKNOWN.egg-info/dependency_links.txt
+writing top-level names to UNKNOWN.egg-info/top_level.txt
+writing manifest file &#39;UNKNOWN.egg-info/SOURCES.txt&#39;
+reading manifest file &#39;UNKNOWN.egg-info/SOURCES.txt&#39;
+writing manifest file &#39;UNKNOWN.egg-info/SOURCES.txt&#39;
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_py
+warning: install_lib: &#39;build/lib&#39; does not exist -- no Python modules to install
 
+creating build
+creating build/bdist.linux-x86_64
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying UNKNOWN.egg-info/PKG-INFO -&gt; build/bdist.linux-x86_64/egg/EGG-INFO
+copying UNKNOWN.egg-info/SOURCES.txt -&gt; build/bdist.linux-x86_64/egg/EGG-INFO
+copying UNKNOWN.egg-info/dependency_links.txt -&gt; build/bdist.linux-x86_64/egg/EGG-INFO
+copying UNKNOWN.egg-info/top_level.txt -&gt; build/bdist.linux-x86_64/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+creating dist
+creating &#39;dist/UNKNOWN-0.0.0-py3.10.egg&#39; and adding &#39;build/bdist.linux-x86_64/egg&#39; to it
+removing &#39;build/bdist.linux-x86_64/egg&#39; (and everything under it)
+Processing UNKNOWN-0.0.0-py3.10.egg
+Copying UNKNOWN-0.0.0-py3.10.egg to /opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding UNKNOWN 0.0.0 to easy-install.pth file
+
+Installed /opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/UNKNOWN-0.0.0-py3.10.egg
+Processing dependencies for UNKNOWN==0.0.0
+Finished processing dependencies for UNKNOWN==0.0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">centum</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotting</span> <span class="k">as</span> <span class="n">pltC</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">centum.irrigation_district</span><span class="w"> </span><span class="kn">import</span> <span class="n">IrrigationDistrict</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ETAnalysisConfig</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="n">ETAnalysisConfig</span><span class="o">.</span>
+                     <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">centum.delineation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ETAnalysis</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">centum.irrigation_district</span><span class="w"> </span><span class="kn">import</span> <span class="n">IrrigationDistrict</span> 
+<span class="kn">from</span><span class="w"> </span><span class="nn">centum</span><span class="w"> </span><span class="kn">import</span> <span class="n">irrigation_district</span> <span class="k">as</span> <span class="n">irr_geo_tools</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">centum.delineation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ETAnalysis</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span><span class="w"> </span><span class="nn">centum.irrigation_district</span><span class="w"> </span><span class="kn">import</span> <span class="n">IrrigationDistrict</span> 
+
+<span class="ne">ImportError</span>: cannot import name &#39;ETAnalysis&#39; from &#39;centum.delineation&#39; (/home/z0272571a@CAMPUS.CSIC.ES/miniconda3/envs/Bousval/lib/python3.9/site-packages/centum/delineation.py)
 </pre></div>
 </div>
 </div>
