@@ -7,7 +7,7 @@ Install Centum via pip:
 
 ```bash
 pip install centum
-
+```
 
 # 💦  Centum
 Centum, derived from the Latin word for "a hundred," is a Python package designed to streamline water accounting through energy and water balance modeling. It equips users with tools to enhance water use efficiency, detect illegal water pumping, and protect essential mountain ecosystems, addressing key water management challenges.
