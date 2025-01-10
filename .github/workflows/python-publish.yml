@@ -38,7 +38,8 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: centum
-        path: dist/*.whl, dist/*.tar.gz
+        #path: dist/*.whl, dist/*.tar.gz
+        path: dist
 
   publish:
     runs-on: ubuntu-latest
