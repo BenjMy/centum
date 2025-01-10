@@ -8,6 +8,8 @@ from centum import plotting as pltC
 import xarray as xr
 import numpy as np
 
+import centum
+import centum.delineation
 from centum.delineation import ETAnalysis
 import matplotlib.pyplot as plt
 
