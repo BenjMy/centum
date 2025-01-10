@@ -53,6 +53,7 @@ jobs:
         with:
           name: centum
           path: dist
+          merge-multiple: true
 
       - name: Publish to Test PyPI
         if: github.event_name == 'push'
