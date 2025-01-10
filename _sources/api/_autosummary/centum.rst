@@ -11,3 +11,5 @@
    :recursive:
 
    delineation
+   irrigation_district
+   plotting
