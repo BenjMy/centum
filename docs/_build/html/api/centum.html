@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>API documentation &#8212; Centum Documentation</title>
+    <title>API documentation &#8212; Centum</title>
   
   
   
@@ -32,8 +32,12 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -42,7 +46,7 @@
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -61,7 +65,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="centum" href="_autosummary/centum.html" />
-    <link rel="prev" title="Notebooks with MyST Markdown" href="../markdown-notebooks.html" />
+    <link rel="prev" title="Tree-Grass ecosystem analysis" href="../tutos/plot_centum_Tree_Grass.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -139,14 +143,14 @@
 
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../index.html">
   
   
   
   
   
   
-    <p class="title logo__title">Centum Documentation</p>
+    <p class="title logo__title">Centum</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -165,16 +169,32 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                <a class="reference internal" href="../index.html">
+                    Welcome to the centum documentation
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_start.html">Installing</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download datasets</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Available datasets</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/Aquacrop.html">AQUACROP irrigation synthetic dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/Spain.html">Tree-Grass ecosystem (Spain, Majadas de Tietar)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials (synthetic)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tutos/plot_centum_delineate_AQUACROP.html">Event detection and classification (rain versus irrigation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutos/plot_centum_delineate_POC.html">Water Delineation “proof of concept”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutos/plot_centum_Tree_Grass.html">Tree-Grass ecosystem analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/centum.html">centum</a></li>
 </ul>
 </li>
@@ -333,12 +353,31 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.threshold_regional"><code class="docutils literal notranslate"><span class="pre">threshold_regional</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.stat"><code class="docutils literal notranslate"><span class="pre">stat</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis"><code class="docutils literal notranslate"><span class="pre">ETAnalysis</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.apply_rules_irrigation"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.apply_rules_irrigation()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.apply_rules_rain"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.apply_rules_rain()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.apply_time_window_mean"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.apply_time_window_mean()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.classify_event"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.classify_event()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_bool_threshold_decision_local"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_bool_threshold_decision_local()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_bool_threshold_decision_regional"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_bool_threshold_decision_regional()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_ratio_ETap_local"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_ratio_ETap_local()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_ratio_ETap_regional"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_ratio_ETap_regional()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_regional_ETap"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_regional_ETap()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-centum.irrigation_district">Irrigation district</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.shapefile_path"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.shapefile_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.crs"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.crs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.convert_to_rioxarray"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.convert_to_rioxarray()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.get_irrigation_area"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.get_irrigation_area()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.load_shapefile"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.load_shapefile()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-centum.plotting">Plotting</a></li>
 </ul>
             </nav>
         </div>
@@ -367,7 +406,8 @@ identify thresholds for decision-making based on changes in these ratios, and ca
 <dl class="py attribute">
 <dt class="sig sig-object py" id="centum.delineation.ETa_name">
 <span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">ETa_name</span></span><a class="headerlink" href="#centum.delineation.ETa_name" title="Link to this definition">#</a></dt>
-<dd><p>Name of the variable representing actual evapotranspiration in the dataset. Default is ‘ACT. ETRA’.</p>
+<dd><p>Name of the variable representing actual evapotranspiration in the dataset.
+Default is ‘ACT. ETRA’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -378,7 +418,8 @@ identify thresholds for decision-making based on changes in these ratios, and ca
 <dl class="py attribute">
 <dt class="sig sig-object py" id="centum.delineation.ETp_name">
 <span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">ETp_name</span></span><a class="headerlink" href="#centum.delineation.ETp_name" title="Link to this definition">#</a></dt>
-<dd><p>Name of the variable representing potential evapotranspiration in the dataset. Default is ‘ETp’.</p>
+<dd><p>Name of the variable representing potential evapotranspiration in the dataset.
+Default is ‘ETp’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -389,7 +430,8 @@ identify thresholds for decision-making based on changes in these ratios, and ca
 <dl class="py attribute">
 <dt class="sig sig-object py" id="centum.delineation.threshold_local">
 <span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">threshold_local</span></span><a class="headerlink" href="#centum.delineation.threshold_local" title="Link to this definition">#</a></dt>
-<dd><p>Threshold value for identifying significant changes in local ETa/ETp ratios. Default is -0.25.</p>
+<dd><p>Threshold value for identifying significant changes in local ETa/ETp ratios.
+Default is -0.25.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -400,7 +442,8 @@ identify thresholds for decision-making based on changes in these ratios, and ca
 <dl class="py attribute">
 <dt class="sig sig-object py" id="centum.delineation.threshold_regional">
 <span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">threshold_regional</span></span><a class="headerlink" href="#centum.delineation.threshold_regional" title="Link to this definition">#</a></dt>
-<dd><p>Threshold value for identifying significant changes in regional ETa/ETp ratios. Default is -0.25.</p>
+<dd><p>Threshold value for identifying significant changes in regional ETa/ETp ratios.
+Default is -0.25.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -411,7 +454,8 @@ identify thresholds for decision-making based on changes in these ratios, and ca
 <dl class="py attribute">
 <dt class="sig sig-object py" id="centum.delineation.stat">
 <span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">stat</span></span><a class="headerlink" href="#centum.delineation.stat" title="Link to this definition">#</a></dt>
-<dd><p>Statistical operation to apply to ETa/ETp ratios. Default is ‘mean’.</p>
+<dd><p>Statistical operation to apply to ETa/ETp ratios. Options include ‘mean’, ‘sum’, etc.
+Default is ‘mean’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -421,21 +465,289 @@ identify thresholds for decision-making based on changes in these ratios, and ca
 
 <dl class="py class">
 <dt class="sig sig-object py" id="centum.delineation.ETAnalysis">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">ETAnalysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ETa_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACT.</span> <span class="pre">ETRA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ETp_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ETp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_local</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_regional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mean'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#centum.delineation.ETAnalysis" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">centum.delineation.</span></span><span class="sig-name descname"><span class="pre">ETAnalysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ETa_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACT.</span> <span class="pre">ETRA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ETp_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ETp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_local</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_regional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-0.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#centum.delineation.ETAnalysis" title="Link to this definition">#</a></dt>
 <dd><dl class="py method">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysis.apply_rules_irrigation">
+<span class="sig-name descname"><span class="pre">apply_rules_irrigation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decision_ds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.apply_rules_irrigation" title="Link to this definition">#</a></dt>
+<dd><p>Applies the rules for detecting irrigation events based on the change in local and regional ETa/ETp ratios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>decision_ds</strong> (<em>xr.Dataset</em>) – An xarray Dataset containing the necessary variables to apply the rules.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated xarray Dataset with new conditions (‘condIrrigation1’, ‘condIrrigation2’, ‘condIrrigation’).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysis.apply_rules_rain">
+<span class="sig-name descname"><span class="pre">apply_rules_rain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decision_ds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.apply_rules_rain" title="Link to this definition">#</a></dt>
+<dd><p>Applies the rules for detecting rain events based on the change in regional and local ETa/ETp ratios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>decision_ds</strong> (<em>xr.Dataset</em>) – An xarray Dataset containing the necessary variables to apply the rules.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated xarray Dataset with new conditions (‘condRain1’, ‘condRain2’, ‘condRain’).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysis.apply_time_window_mean">
+<span class="sig-name descname"><span class="pre">apply_time_window_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.apply_time_window_mean" title="Link to this definition">#</a></dt>
+<dd><p>Applies a rolling time-window mean to a specified variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The dataset containing the variable to process.</p></li>
+<li><p><strong>variable</strong> (<em>str</em>) – The name of the variable to which the rolling mean is applied.</p></li>
+<li><p><strong>time_window</strong> (<em>int</em>) – The rolling time window size.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataset with the time-averaged variable added.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysis.classify_event">
+<span class="sig-name descname"><span class="pre">classify_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decision_ds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">irrigation_condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'condIrrigation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rain_condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'condRain'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataArray</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.classify_event" title="Link to this definition">#</a></dt>
+<dd><p>Classifies events into irrigation, rain, or no event based on conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>decision_ds</strong> (<em>xr.Dataset</em>) – The dataset containing the event classification conditions.</p></li>
+<li><p><strong>irrigation_condition</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the variable indicating irrigation conditions. Default is “condIrrigation”.</p></li>
+<li><p><strong>rain_condition</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the variable indicating rain conditions. Default is “condRain”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array representing event types:
+1 = Irrigation event
+2 = Rain event
+0 = No event</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.DataArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="centum.delineation.ETAnalysis.compute_bool_threshold_decision_local">
-<span class="sig-name descname"><span class="pre">compute_bool_threshold_decision_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.compute_bool_threshold_decision_local" title="Link to this definition">#</a></dt>
-<dd><p>Test docsting 2</p>
+<span class="sig-name descname"><span class="pre">compute_bool_threshold_decision_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checkp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ratio_ETap_local_time_avg'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.compute_bool_threshold_decision_local" title="Link to this definition">#</a></dt>
+<dd><p>Computes a boolean threshold decision for the local ETa/ETp ratio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The dataset containing the local ETa/ETp ratio data.</p></li>
+<li><p><strong>checkp</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the variable in the dataset to check against the threshold.
+Default is ‘ratio_ETap_local_time_avg’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated dataset with a new variable <cite>threshold_local</cite> indicating where
+the specified variable exceeds the threshold.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysis.compute_bool_threshold_decision_regional">
+<span class="sig-name descname"><span class="pre">compute_bool_threshold_decision_regional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checkp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ratio_ETap_regional_spatial_avg_time_avg'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.compute_bool_threshold_decision_regional" title="Link to this definition">#</a></dt>
+<dd><p>Computes a boolean threshold decision for the regional ETa/ETp ratio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The dataset containing the regional ETa/ETp ratio data.</p></li>
+<li><p><strong>checkp</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the variable in the dataset to check against the threshold.
+Default is ‘ratio_ETap_regional_spatial_avg_time_avg’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated dataset with a new variable <cite>threshold_regional</cite> indicating where
+the specified variable exceeds the threshold.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysis.compute_ratio_ETap_local">
+<span class="sig-name descname"><span class="pre">compute_ratio_ETap_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ETa_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACT.</span> <span class="pre">ETRA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ETp_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ETp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.compute_ratio_ETap_local" title="Link to this definition">#</a></dt>
+<dd><p>Computes the local ETa/ETp ratio and its temporal differences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The dataset containing ETa and ETp data.</p></li>
+<li><p><strong>ETa_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The variable name for ETa. Default is ‘ACT. ETRA’.</p></li>
+<li><p><strong>ETp_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The variable name for ETp. Default is ‘ETp’.</p></li>
+<li><p><strong>time_window</strong> (<em>int</em><em>, </em><em>optional</em>) – The rolling time window size for temporal averaging. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataset with added local ETa/ETp ratio and temporal differences.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="centum.delineation.ETAnalysis.compute_ratio_ETap_regional">
-<span class="sig-name descname"><span class="pre">compute_ratio_ETap_regional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.compute_ratio_ETap_regional" title="Link to this definition">#</a></dt>
-<dd><p>Test docsting</p>
+<span class="sig-name descname"><span class="pre">compute_ratio_ETap_regional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ETa_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACT.</span> <span class="pre">ETRA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ETp_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ETp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.compute_ratio_ETap_regional" title="Link to this definition">#</a></dt>
+<dd><p>Computes the regional ETa/ETp ratio and its temporal differences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The dataset containing ETa and ETp data.</p></li>
+<li><p><strong>ETa_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The variable name for ETa. Default is ‘ACT. ETRA’.</p></li>
+<li><p><strong>ETp_name</strong> (<em>str</em><em>, </em><em>optional</em>) – The variable name for ETp. Default is ‘ETp’.</p></li>
+<li><p><strong>stat</strong> (<em>str</em><em>, </em><em>optional</em>) – The statistic to compute for regional aggregation (e.g., ‘mean’). Default is ‘mean’.</p></li>
+<li><p><strong>window_size_x</strong> (<em>int</em><em>, </em><em>optional</em>) – The spatial window size in kilometers for regional averaging. Default is 10.</p></li>
+<li><p><strong>time_window</strong> (<em>int</em><em>, </em><em>optional</em>) – The rolling time window size for temporal averaging. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataset with added regional ETa/ETp ratio and temporal differences.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.delineation.ETAnalysis.compute_regional_ETap">
+<span class="sig-name descname"><span class="pre">compute_regional_ETap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_analysis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dataset</span></span></span><a class="headerlink" href="#centum.delineation.ETAnalysis.compute_regional_ETap" title="Link to this definition">#</a></dt>
+<dd><p>Placeholder function to compute regional ETa and ETp.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_analysis</strong> (<em>xr.Dataset</em>) – The dataset containing ETa and ETp data.</p></li>
+<li><p><strong>stat</strong> (<em>str</em>) – The statistic to compute for regional aggregation (e.g., ‘mean’).</p></li>
+<li><p><strong>window_size_x</strong> (<em>int</em>) – The spatial window size in kilometers for regional averaging.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dataset containing spatially averaged ETa and ETp.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.Dataset</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
+</section>
+<section id="module-centum.irrigation_district">
+<span id="irrigation-district"></span><h2>Irrigation district<a class="headerlink" href="#module-centum.irrigation_district" title="Link to this heading">#</a></h2>
+<p>Created on Thu Jan  9 17:17:35 2025</p>
+<p>&#64;author: z0272571a</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="centum.irrigation_district.IrrigationDistrict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">centum.irrigation_district.</span></span><span class="sig-name descname"><span class="pre">IrrigationDistrict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapefile_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#centum.irrigation_district.IrrigationDistrict" title="Link to this definition">#</a></dt>
+<dd><p>Class for handling irrigation districts using georeferenced shapefiles.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="centum.irrigation_district.IrrigationDistrict.shapefile_path">
+<span class="sig-name descname"><span class="pre">shapefile_path</span></span><a class="headerlink" href="#centum.irrigation_district.IrrigationDistrict.shapefile_path" title="Link to this definition">#</a></dt>
+<dd><p>The path to the irrigation district shapefile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="centum.irrigation_district.IrrigationDistrict.crs">
+<span class="sig-name descname"><span class="pre">crs</span></span><a class="headerlink" href="#centum.irrigation_district.IrrigationDistrict.crs" title="Link to this definition">#</a></dt>
+<dd><p>The coordinate reference system (CRS) to convert the shapefile to, if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.irrigation_district.IrrigationDistrict.convert_to_rioxarray">
+<span class="sig-name descname"><span class="pre">convert_to_rioxarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GeoDataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataArray</span></span></span><a class="headerlink" href="#centum.irrigation_district.IrrigationDistrict.convert_to_rioxarray" title="Link to this definition">#</a></dt>
+<dd><p>Converts a GeoDataFrame to a rioxarray DataArray, enabling spatial operations on it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gdf</strong> (<em>gpd.GeoDataFrame</em>) – The GeoDataFrame representing the irrigation districts.</p></li>
+<li><p><strong>variable</strong> (<em>str</em>) – The name of the variable to associate with the irrigation districts.</p></li>
+<li><p><strong>resolution</strong> (<em>float</em>) – The spatial resolution of the output raster.</p></li>
+<li><p><strong>bounds</strong> (<em>tuple</em>) – The bounding box of the raster in the format (minx, miny, maxx, maxy).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A rioxarray DataArray with the variable values overlaid on the irrigation districts’ geospatial extent.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>xr.DataArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.irrigation_district.IrrigationDistrict.get_irrigation_area">
+<span class="sig-name descname"><span class="pre">get_irrigation_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GeoDataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#centum.irrigation_district.IrrigationDistrict.get_irrigation_area" title="Link to this definition">#</a></dt>
+<dd><p>Computes the total irrigation area (in square kilometers).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gdf</strong> (<em>gpd.GeoDataFrame</em>) – The GeoDataFrame representing the irrigation districts.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total area of the irrigation districts in square kilometers.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="centum.irrigation_district.IrrigationDistrict.load_shapefile">
+<span class="sig-name descname"><span class="pre">load_shapefile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GeoDataFrame</span></span></span><a class="headerlink" href="#centum.irrigation_district.IrrigationDistrict.load_shapefile" title="Link to this definition">#</a></dt>
+<dd><p>Loads the irrigation district shapefile into a GeoDataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A GeoDataFrame representing the irrigation districts.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>gpd.GeoDataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-centum.plotting">
+<span id="plotting"></span><h2>Plotting<a class="headerlink" href="#module-centum.plotting" title="Link to this heading">#</a></h2>
+<p>Functions to plot</p>
 </section>
 </section>
 
@@ -470,12 +782,12 @@ identify thresholds for decision-making based on changes in these ratios, and ca
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../markdown-notebooks.html"
+       href="../tutos/plot_centum_Tree_Grass.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+        <p class="prev-next-title">Tree-Grass ecosystem analysis</p>
       </div>
     </a>
     <a class="right-next"
@@ -510,12 +822,31 @@ identify thresholds for decision-making based on changes in these ratios, and ca
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.threshold_regional"><code class="docutils literal notranslate"><span class="pre">threshold_regional</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.stat"><code class="docutils literal notranslate"><span class="pre">stat</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis"><code class="docutils literal notranslate"><span class="pre">ETAnalysis</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.apply_rules_irrigation"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.apply_rules_irrigation()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.apply_rules_rain"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.apply_rules_rain()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.apply_time_window_mean"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.apply_time_window_mean()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.classify_event"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.classify_event()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_bool_threshold_decision_local"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_bool_threshold_decision_local()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_bool_threshold_decision_regional"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_bool_threshold_decision_regional()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_ratio_ETap_local"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_ratio_ETap_local()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_ratio_ETap_regional"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_ratio_ETap_regional()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.delineation.ETAnalysis.compute_regional_ETap"><code class="docutils literal notranslate"><span class="pre">ETAnalysis.compute_regional_ETap()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-centum.irrigation_district">Irrigation district</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.shapefile_path"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.shapefile_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.crs"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.crs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.convert_to_rioxarray"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.convert_to_rioxarray()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.get_irrigation_area"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.get_irrigation_area()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centum.irrigation_district.IrrigationDistrict.load_shapefile"><code class="docutils literal notranslate"><span class="pre">IrrigationDistrict.load_shapefile()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-centum.plotting">Plotting</a></li>
 </ul>
   </nav></div>
 
@@ -530,7 +861,7 @@ identify thresholds for decision-making based on changes in these ratios, and ca
   <div class="footer-item">
     
 <p class="component-author">
-By Your Name
+By Developers
 </p>
 
   </div>

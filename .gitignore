@@ -5,3 +5,4 @@ __pycache__/
 progressMeeting
 ./dist
 ./build
+centum.egg-info

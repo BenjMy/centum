@@ -6,4 +6,5 @@ dependencies:
   - xarray
   - rioxarray
   - geopandas
+  - july
  

@@ -2,9 +2,19 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
-chapters:
-  - file: markdown
-  - file: notebooks
-  - file: markdown-notebooks
-  - file: api/centum
+root: index
+parts:
+  - caption: User guide
+    chapters:
+    - file: getting_start
+    - file: download
+    - file: auto_examples/index
+  - caption: Tutorials (synthetic)
+    chapters:
+    - file: tutos/plot_centum_delineate_AQUACROP
+    - file: tutos/plot_centum_delineate_POC
+    - file: tutos/plot_centum_Tree_Grass
+  - caption: API documentation
+    chapters:
+    - file: api/centum
+

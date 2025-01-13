@@ -1,22 +1,22 @@
 # Jupyter Book configuration file
-title: "Centum Documentation"
-author: "Your Name"
+title: "Centum"
+author: "Developers"
 description: "Documentation for the Centum package"
-logo: "images/logo.png"
 
-# Table of Contents configuration
-toc:
-  - file: intro
-  - file: markdown
-  - file: notebooks
-  - file: markdown-notebooks
-  - title: API Reference
-    file: api/centum_api.md
-
+# Sphinx configuration for Jupyter Book
 sphinx:
   extra_extensions:
-  - 'sphinx.ext.autodoc'
-  - 'sphinx.ext.autosummary'
-  - 'sphinx.ext.napoleon'
+    - 'sphinx.ext.autodoc'
+    - 'sphinx.ext.autosummary'
+    - 'sphinx.ext.napoleon'
+    - 'sphinx_gallery.gen_gallery'
   config:
-    autosummary_generate: True
+    autosummary_generate: true
+
+# Sphinx-Gallery configuration
+sphinx_gallery:
+  examples_dirs: "./datasets"  # Adjust this path to the actual location of your example notebooks
+  gallery_dirs: "../gallery"  # The directory where gallery content will be saved
+  download_all_examples: true  # Enable downloading of all examples in the gallery
+
+

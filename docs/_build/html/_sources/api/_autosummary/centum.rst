@@ -28,4 +28,6 @@
    :recursive:
 
    centum.delineation
+   centum.irrigation_district
+   centum.plotting
 

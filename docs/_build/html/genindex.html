@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Centum Documentation</title>
+    <title>Index &#8212; Centum</title>
   
   
   
@@ -31,8 +31,12 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -41,7 +45,7 @@
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
@@ -138,14 +142,14 @@
 
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="index.html">
   
   
   
   
   
   
-    <p class="title logo__title">Centum Documentation</p>
+    <p class="title logo__title">Centum</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -164,16 +168,32 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                <a class="reference internal" href="index.html">
+                    Welcome to the centum documentation
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="api/centum.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="getting_start.html">Installing</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download datasets</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="auto_examples/index.html">Available datasets</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="auto_examples/Aquacrop.html">AQUACROP irrigation synthetic dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auto_examples/Spain.html">Tree-Grass ecosystem (Spain, Majadas de Tietar)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials (synthetic)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutos/plot_centum_delineate_AQUACROP.html">Event detection and classification (rain versus irrigation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutos/plot_centum_delineate_POC.html">Water Delineation “proof of concept”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutos/plot_centum_Tree_Grass.html">Tree-Grass ecosystem analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/centum.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/_autosummary/centum.html">centum</a></li>
 </ul>
 </li>
@@ -283,13 +303,31 @@ document.write(`
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#C"><strong>C</strong></a>
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#E"><strong>E</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  
 </div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/centum.html#centum.delineation.ETAnalysis.apply_rules_irrigation">apply_rules_irrigation() (centum.delineation.ETAnalysis method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/centum.html#centum.delineation.ETAnalysis.apply_rules_rain">apply_rules_rain() (centum.delineation.ETAnalysis method)</a>
+</li>
+      <li><a href="api/centum.html#centum.delineation.ETAnalysis.apply_time_window_mean">apply_time_window_mean() (centum.delineation.ETAnalysis method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -307,11 +345,37 @@ document.write(`
         <li><a href="api/_autosummary/centum.delineation.html#module-centum.delineation">module</a>, <a href="api/centum.html#module-centum.delineation">[1]</a>
 </li>
       </ul></li>
+      <li>
+    centum.irrigation_district
+
+      <ul>
+        <li><a href="api/_autosummary/centum.irrigation_district.html#module-centum.irrigation_district">module</a>, <a href="api/centum.html#module-centum.irrigation_district">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    centum.plotting
+
+      <ul>
+        <li><a href="api/_autosummary/centum.plotting.html#module-centum.plotting">module</a>, <a href="api/centum.html#module-centum.plotting">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/centum.html#centum.delineation.ETAnalysis.classify_event">classify_event() (centum.delineation.ETAnalysis method)</a>
+</li>
       <li><a href="api/centum.html#centum.delineation.ETAnalysis.compute_bool_threshold_decision_local">compute_bool_threshold_decision_local() (centum.delineation.ETAnalysis method)</a>
 </li>
+      <li><a href="api/centum.html#centum.delineation.ETAnalysis.compute_bool_threshold_decision_regional">compute_bool_threshold_decision_regional() (centum.delineation.ETAnalysis method)</a>
+</li>
+      <li><a href="api/centum.html#centum.delineation.ETAnalysis.compute_ratio_ETap_local">compute_ratio_ETap_local() (centum.delineation.ETAnalysis method)</a>
+</li>
       <li><a href="api/centum.html#centum.delineation.ETAnalysis.compute_ratio_ETap_regional">compute_ratio_ETap_regional() (centum.delineation.ETAnalysis method)</a>
+</li>
+      <li><a href="api/centum.html#centum.delineation.ETAnalysis.compute_regional_ETap">compute_regional_ETap() (centum.delineation.ETAnalysis method)</a>
+</li>
+      <li><a href="api/centum.html#centum.irrigation_district.IrrigationDistrict.convert_to_rioxarray">convert_to_rioxarray() (centum.irrigation_district.IrrigationDistrict method)</a>
+</li>
+      <li><a href="api/centum.html#centum.irrigation_district.IrrigationDistrict.crs">crs (centum.irrigation_district.IrrigationDistrict attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -330,6 +394,30 @@ document.write(`
   </ul></td>
 </tr></table>
 
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/centum.html#centum.irrigation_district.IrrigationDistrict.get_irrigation_area">get_irrigation_area() (centum.irrigation_district.IrrigationDistrict method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/centum.html#centum.irrigation_district.IrrigationDistrict">IrrigationDistrict (class in centum.irrigation_district)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/centum.html#centum.irrigation_district.IrrigationDistrict.load_shapefile">load_shapefile() (centum.irrigation_district.IrrigationDistrict method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -341,12 +429,20 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/centum.delineation.html#module-centum.delineation">centum.delineation</a>, <a href="api/centum.html#module-centum.delineation">[1]</a>
 </li>
+        <li><a href="api/_autosummary/centum.irrigation_district.html#module-centum.irrigation_district">centum.irrigation_district</a>, <a href="api/centum.html#module-centum.irrigation_district">[1]</a>
+</li>
+        <li><a href="api/_autosummary/centum.plotting.html#module-centum.plotting">centum.plotting</a>, <a href="api/centum.html#module-centum.plotting">[1]</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/centum.html#centum.irrigation_district.IrrigationDistrict.shapefile_path">shapefile_path (centum.irrigation_district.IrrigationDistrict attribute)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/centum.delineation.html#centum.delineation.stat">stat (in module centum.delineation)</a>, <a href="api/centum.html#centum.delineation.stat">[1]</a>
 </li>
@@ -395,7 +491,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By Your Name
+By Developers
 </p>
 
   </div>
