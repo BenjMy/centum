@@ -3,3 +3,4 @@ jupyterlab
 jupyterlab-myst
 sphinx-gallery
 sphinx-rtd-theme
+pooch
