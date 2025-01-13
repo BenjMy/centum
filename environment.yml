@@ -6,5 +6,6 @@ dependencies:
   - xarray
   - rioxarray
   - geopandas
-  - july
- 
+  - pip
+  - pip:
+    - july
