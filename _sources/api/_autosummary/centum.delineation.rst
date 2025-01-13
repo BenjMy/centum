@@ -1,4 +1,4 @@
-﻿centum.delineation
+centum.delineation
 ==================
 
 .. automodule:: centum.delineation

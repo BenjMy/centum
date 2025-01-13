@@ -4,28 +4,12 @@
 .. automodule:: centum
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
    :recursive:
 
-   centum.delineation
-
+   delineation
+   irrigation_district
+   plotting
