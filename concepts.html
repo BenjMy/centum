@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Download datasets &#8212; Centum</title>
+    <title>Concepts &#8212; Centum</title>
   
   
   
@@ -64,11 +64,9 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'download';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Available datasets" href="auto_examples/index.html" />
-    <link rel="prev" title="Installing" href="getting_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -120,6 +118,8 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -167,11 +167,11 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">User guide</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="getting_start.html">Installing</a></li>
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Download datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download datasets</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="auto_examples/index.html">Available datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/Aquacrop.html">AQUACROP irrigation synthetic dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/Spain.html">Tree-Grass ecosystem (Spain, Majadas de Tietar)</a></li>
@@ -255,7 +255,7 @@
       
       
       
-      <li><a href="_sources/download.ipynb" target="_blank"
+      <li><a href="_sources/concepts.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -265,7 +265,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -318,7 +318,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -329,11 +331,20 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Download datasets</h1>
+    <h1>Concepts</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-irrigation-events-through-monitoring-of-changes-in-et">Identifying irrigation events through monitoring of changes in ET</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-irrigation">Quantifying irrigation</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -343,31 +354,49 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="download-datasets">
-<h1>Download datasets<a class="headerlink" href="#download-datasets" title="Link to this heading">#</a></h1>
-<p>One of the main use cases of Centum is to provide <strong>reproducible and easy-to-access data</strong>.</p>
-<p>Use the functions in the Pooch module to download and cache (store) each dataset on your computer.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pooch_Majadas</span> <span class="o">=</span> <span class="n">pooch</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">path</span><span class="o">=</span><span class="n">pooch</span><span class="o">.</span><span class="n">os_cache</span><span class="p">(</span><span class="s2">&quot;AQUACROP_project&quot;</span><span class="p">),</span>
-    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://github.com/BenjMy/test_AQUACROP_centum_dataset/raw/refs/heads/main/AQUACROP/&quot;</span><span class="p">,</span>
-    <span class="n">registry</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;EO_scenario_AquaCrop_sc7_weather_reference.netcdf&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="s2">&quot;baseline_scenario_AquaCrop_sc7_weather_reference.netcdf&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="s2">&quot;grid_xr_EO_AquaCrop_sc7_weather_reference.netcdf&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Work in progress
-At the moment test datasets are located in github repository</p>
-<p><strong>After V1 release</strong> all datasets will be versioned and included in Zenodo.</p>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="concepts">
+<h1>Concepts<a class="headerlink" href="#concepts" title="Link to this heading">#</a></h1>
+<section id="identifying-irrigation-events-through-monitoring-of-changes-in-et">
+<h2>Identifying irrigation events through monitoring of changes in ET<a class="headerlink" href="#identifying-irrigation-events-through-monitoring-of-changes-in-et" title="Link to this heading">#</a></h2>
+<p>The <strong>ratio of actual to potential ET (ETa/p)</strong> should be used in order to avoid changes in ET
+due to changes in weather (e.g. increased wind speed) or crop cover (e.g. quick development of
+leaves) being attributed to irrigation. This ratio is closely related to root-zone water availability and
+therefore is mainly influenced by irrigation or rainfall events.</p>
+<p>This is achieved by first calculating the change in <strong>ETa/p</strong> between the time on which irrigation is to be detect and most recent previous time on which ET estimates are available. This change is <strong>calculated both locally (i.e. at individual pixel level) and regionally</strong> (i.e. as an average change in all agricultural pixels within 10 km window).</p>
+<figure class="align-default" id="id1">
+<a class="bg-primary reference internal image-reference" href="_images/EO-MAJI-IrrDelineation.png"><img alt="EO-MAJI-IrrDelineation" class="bg-primary" src="_images/EO-MAJI-IrrDelineation.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">EO-MAJI-IrrDelineation</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The local and regional changes are then <strong>compared to a number of thresholds</strong> to try to detect if:</p>
+<ul class="simple">
+<li><p>a) There is no input of water into the soil (e.g. local ETa/p does not increase above a threshold)</p></li>
+<li><p>b) There is input of water into the soil but due to rainfall (e.g. increase in regional ETa/p is over a
+threshold and larger or similar to increase in local Eta/p)</p></li>
+<li><p>c) There is input of water to the soil due to irrigation (e.g. increase in local ETa/p is over a
+threshold and significantly larger than increase in regional ETa/p)</p></li>
+</ul>
+<p>Detected irrigation events are further split into <strong>low, medium and high probability</strong> based on another set
+of thresholds. Since irrigation is normally applied on a larger area, the raster map with per-pixel
+irrigation events is cleaned up by removing isolated pixels in which irrigation was detected.</p>
+<figure class="align-default" id="id2">
+<a class="bg-primary reference internal image-reference" href="_images/EO-MAJI-IrrNet.png"><img alt="EO-MAJI-IrrNet" class="bg-primary" src="_images/EO-MAJI-IrrNet.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Issue with rain event</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="quantifying-irrigation">
+<h2>Quantifying irrigation<a class="headerlink" href="#quantifying-irrigation" title="Link to this heading">#</a></h2>
+<p>Inet_EOMAJI</p>
+<figure class="align-default" id="id3">
+<a class="bg-primary reference internal image-reference" href="_images/Inet_EOMAJI.png"><img alt="EO-MAJI-IrrDelineation" class="bg-primary" src="_images/Inet_EOMAJI.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">EO-MAJI-Inet</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -400,30 +429,29 @@ At the moment test datasets are located in github repository</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="getting_start.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Installing</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="auto_examples/index.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Available datasets</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-irrigation-events-through-monitoring-of-changes-in-et">Identifying irrigation events through monitoring of changes in ET</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-irrigation">Quantifying irrigation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
