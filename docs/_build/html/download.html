@@ -176,6 +176,8 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">User guide</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Identifying irrigation events through monitoring of changes in ET</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="getting_start.html">Installing</a></li>
 
 
@@ -350,6 +352,29 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="download-datasets">
 <h1>Download datasets<a class="headerlink" href="#download-datasets" title="Link to this heading">#</a></h1>
+<p>One of the main use cases of Centum is to provide <strong>reproducible and easy-to-access data</strong>.</p>
+<p>Use the functions in the Pooch module to download and cache (store) each dataset on your computer.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pooch_Majadas</span> <span class="o">=</span> <span class="n">pooch</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">pooch</span><span class="o">.</span><span class="n">os_cache</span><span class="p">(</span><span class="s2">&quot;AQUACROP_project&quot;</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://github.com/BenjMy/test_AQUACROP_centum_dataset/raw/refs/heads/main/AQUACROP/&quot;</span><span class="p">,</span>
+    <span class="n">registry</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;EO_scenario_AquaCrop_sc7_weather_reference.netcdf&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;baseline_scenario_AquaCrop_sc7_weather_reference.netcdf&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;grid_xr_EO_AquaCrop_sc7_weather_reference.netcdf&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Work in progress
+At the moment test datasets are located in github repository</p>
+<p><strong>After V1 release</strong> all datasets will be versioned and included in Zenodo.</p>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jan  9 17:17:35 2025
-
-@author: z0272571a
+Handling irrigation districts using georeferenced shapefiles
 """
 import geopandas as gpd
 import rioxarray

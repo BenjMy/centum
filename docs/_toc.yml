@@ -4,6 +4,10 @@
 format: jb-book
 root: index
 parts:
+  - caption: Algorithm Technical Basis
+    chapters:
+    - file: water_delineation
+    - file: water_quantification
   - caption: User guide
     chapters:
     - file: getting_start

@@ -11,6 +11,17 @@ The package supports the delineation of irrigated areas. Built with a modular an
 - **Flexible Data Formats**: Works with NetCDF, and shapefiles.
 - **Open Source**: Licensed under GPL-3.0 for collaborative development.
 
+
+## Release roadmap
+- [ ] V1.0: water delineation algoritm tested for synthetic irrigation time series (generated using AQUACROP)
+- V1.*: 
+  - [ ] test delineation over real field site data 
+  - [ ] result visualisation utilities
+  - [ ] ...
+- V2.0: irrigation water quantification 
+- V3.0: use ET from DA as input to estimate uncertainties
+- V*: illegal Water Pumping Detection/ Ecosystem Resilience (Green water footprint evaluation)
+
 ## Installation
 
 To install `centum` using pip:

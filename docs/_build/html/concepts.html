@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Installing &#8212; Centum</title>
+    <title>Identifying irrigation events through monitoring of changes in ET &#8212; Centum</title>
   
   
   
@@ -61,11 +61,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_start';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Download datasets" href="download.html" />
-    <link rel="prev" title="Identifying irrigation events through monitoring of changes in ET" href="concepts.html" />
+    <link rel="next" title="Installing" href="getting_start.html" />
+    <link rel="prev" title="Welcome to the centum documentation" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,9 +176,9 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">User guide</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="concepts.html">Identifying irrigation events through monitoring of changes in ET</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Identifying irrigation events through monitoring of changes in ET</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_start.html">Installing</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="download.html">Download datasets</a></li>
@@ -254,7 +254,7 @@
       
       
       
-      <li><a href="_sources/getting_start.ipynb" target="_blank"
+      <li><a href="_sources/concepts.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -264,7 +264,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -338,7 +338,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Installing</h1>
+    <h1>Identifying irrigation events through monitoring of changes in ET</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -348,9 +348,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Installing</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#which-python">Which Python?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-libraries">Importing libraries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Identifying irrigation events through monitoring of changes in ET</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-irrigation">Quantifying irrigation</a></li>
 </ul>
 
             </nav>
@@ -363,31 +362,46 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="installing">
-<h1>Installing<a class="headerlink" href="#installing" title="Link to this heading">#</a></h1>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Installing Centum</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>centum
-</pre></div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="identifying-irrigation-events-through-monitoring-of-changes-in-et">
+<h1>Identifying irrigation events through monitoring of changes in ET<a class="headerlink" href="#identifying-irrigation-events-through-monitoring-of-changes-in-et" title="Link to this heading">#</a></h1>
+<p>The <strong>ratio of actual to potential ET (ETa/p)</strong> should be used in order to avoid changes in ET
+due to changes in weather (e.g. increased wind speed) or crop cover (e.g. quick development of
+leaves) being attributed to irrigation. This ratio is closely related to root-zone water availability and
+therefore is mainly influenced by irrigation or rainfall events.</p>
+<p>This is achieved by first calculating the change in <strong>ETa/p</strong> between the time on which irrigation is to be detect and most recent previous time on which ET estimates are available. This change is <strong>calculated both locally (i.e. at individual pixel level) and regionally</strong> (i.e. as an average change in all agricultural pixels within 10 km window).</p>
+<figure class="align-default" id="id1">
+<a class="bg-primary reference internal image-reference" href="_images/EO-MAJI-IrrDelineation.png"><img alt="EO-MAJI-IrrDelineation" class="bg-primary" src="_images/EO-MAJI-IrrDelineation.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">EO-MAJI-IrrDelineation</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The local and regional changes are then <strong>compared to a number of thresholds</strong> to try to detect if:</p>
+<ul class="simple">
+<li><p>a) There is no input of water into the soil (e.g. local ETa/p does not increase above a threshold)</p></li>
+<li><p>b) There is input of water into the soil but due to rainfall (e.g. increase in regional ETa/p is over a
+threshold and larger or similar to increase in local Eta/p)</p></li>
+<li><p>c) There is input of water to the soil due to irrigation (e.g. increase in local ETa/p is over a
+threshold and significantly larger than increase in regional ETa/p)</p></li>
+</ul>
+<p>Detected irrigation events are further split into <strong>low, medium and high probability</strong> based on another set
+of thresholds. Since irrigation is normally applied on a larger area, the raster map with per-pixel
+irrigation events is cleaned up by removing isolated pixels in which irrigation was detected.</p>
+<figure class="align-default" id="id2">
+<a class="bg-primary reference internal image-reference" href="_images/EO-MAJI-IrrNet.png"><img alt="EO-MAJI-IrrNet" class="bg-primary" src="_images/EO-MAJI-IrrNet.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Issue with rain event</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="which-python">
-<h1>Which Python?<a class="headerlink" href="#which-python" title="Link to this heading">#</a></h1>
-<p>You’ll need <strong>Python &gt;= 3.9</strong></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="importing-libraries">
-<h1>Importing libraries<a class="headerlink" href="#importing-libraries" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">centum</span> <span class="kn">import</span> <span class="n">plotting</span> <span class="k">as</span> <span class="n">pltC</span>
-<span class="kn">from</span> <span class="nn">centum.irrigation_district</span> <span class="kn">import</span> <span class="n">IrrigationDistrict</span> 
-<span class="kn">from</span> <span class="nn">centum.delineation</span> <span class="kn">import</span> <span class="n">ETAnalysis</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section class="tex2jax_ignore mathjax_ignore" id="quantifying-irrigation">
+<h1>Quantifying irrigation<a class="headerlink" href="#quantifying-irrigation" title="Link to this heading">#</a></h1>
+<p>Inet_EOMAJI</p>
+<figure class="align-default" id="id3">
+<a class="bg-primary reference internal image-reference" href="_images/Inet_EOMAJI.png"><img alt="EO-MAJI-IrrDelineation" class="bg-primary" src="_images/Inet_EOMAJI.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">EO-MAJI-Inet</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 
     <script type="text/x-thebe-config">
@@ -421,20 +435,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="concepts.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Identifying irrigation events through monitoring of changes in ET</p>
+        <p class="prev-next-title">Welcome to the centum documentation</p>
       </div>
     </a>
     <a class="right-next"
-       href="download.html"
+       href="getting_start.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Download datasets</p>
+        <p class="prev-next-title">Installing</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -454,9 +468,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Installing</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#which-python">Which Python?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-libraries">Importing libraries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Identifying irrigation events through monitoring of changes in ET</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-irrigation">Quantifying irrigation</a></li>
 </ul>
 
   </nav></div>

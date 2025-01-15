@@ -15,14 +15,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-ds_analysis_EO.time
+ETa_ds.isel(band=0).
 ------------------
 
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[3], line 1[0m
-[0;32m----> 1[0m [43mds_analysis_EO[49m[38;5;241m.[39mtime
+[0;36m  Cell [0;32mIn[3], line 1[0;36m[0m
+[0;31m    ETa_ds.isel(band=0).[0m
+[0m                        ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
 
-[0;31mNameError[0m: name 'ds_analysis_EO' is not defined
 
