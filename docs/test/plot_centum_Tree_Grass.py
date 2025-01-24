@@ -41,8 +41,13 @@ import xarray as xr
 import numpy as np
 import matplotlib.pyplot as plt
 import geopandas as gpd
+import centum
+from centum import irrigation_district 
 from centum.irrigation_district import IrrigationDistrict 
+from centum import irrigation_district as irr_geo_tools 
+
 from centum import utils 
+from centum import plotting as pltC
 
 
 # In[2]:
@@ -73,7 +78,13 @@ ETp_ds = xr.load_dataset(Majadas_ETp_dataset)
 ETp_ds = ETp_ds.rename({"__xarray_dataarray_variable__": "ETp"})  # Rename the main variable to 'ETa'
 CLC = gpd.read_file(Majadas_CLC_shapefile)  # Load the CLC dataset
 
-ETa_ds = ETa_ds
+# ETa_ds = ETa_ds
+
+
+
+# Convert it to a rioxarray object with CRS handling
+# ETa_rio = rxr.open_rasterio(Majadas_ETa_dataset, masked=True)
+
 
 
 # In[3]:
@@ -94,249 +105,255 @@ CLC.plot(column='Code_18', ax=ax, legend=True, cmap='viridis')
 ax.set_title("Majadas de Tietar Corine Land Cover")
 plt.show()
 
+#%%
+
+import leafmap
+import rioxarray as rxr 
+
+# Get the bounding box of the GeoDataFrame
+# bbox = CLC.total_bounds  # Returns [minx, miny, maxx, maxy]
+gdf_WGS84 = CLC.to_crs('EPSG:4326')
+# bbox = gdf_WGS84.buffer(5e-4).total_bounds
+bbox = gdf_WGS84.total_bounds
+
+# Create the map with specific zoom and base map
+# m = leafmap.Map(center=[(bbox[1] + bbox[3]) / 2, (bbox[0] + bbox[2]) / 2], zoom=15)
+
+# Use the map_tiles_to_geotiff method to overlay the GeoTIFF onto the map
+leafmap.map_tiles_to_geotiff('satellite.tif', bbox=list(bbox),
+                             zoom=15, source='Esri.WorldImagery')
+
+# Read the GeoTIFF file using rioxarray (replace with the path to your file)
+satellite_image = rxr.open_rasterio('satellite.tif', masked=False)
+
 
 #%%
+
+clc_codes = utils.get_CLC_code_def()
+categorical_enums = {'Code_18': clc_codes}
+
 
 GeoAnalysis = IrrigationDistrict(Majadas_CLC_shapefile)
 gdf_CLC = GeoAnalysis.load_shapefile()
 
+# Plot the satellite image
+fig, axs = plt.subplots(1,2,figsize=(10, 10))
+
+# Plot the satellite image using imshow (from rioxarray)
+satellite_image.plot.imshow(ax=axs[0], add_colorbar=False,
+                            )
+
+# Optionally, plot the boundaries of the GeoDataFrame
+gdf_CLC.plot(column='Code_18', ax=axs[1], 
+             legend=True, 
+             cmap="viridis"
+             )
+
+# Set axis labels and title
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+ax.set_title('Satellite Image with GeoDataFrame Boundary')
+
+
+axs[0].set_aspect('equal')
+axs[1].set_aspect('equal')
+
+# Show the plot
+plt.show()
+
+
+
 #%%
-from geocube.api.core import make_geocube
-
-clc_codes = utils.get_CLC_code_def()
-
-# CLC_Majadas = Majadas_utils.get_LandCoverMap()
-# CLC_clipped = gpd.clip(CLC_Majadas, 
-#                         majadas_aoi
-#                         )
 
 
-
-categorical_enums = {'Code_18': clc_codes}
-
-# shapefile to raster with 300 m resolution
-# -----------------------------------------
-CLC_Majadas_clipped_grid = make_geocube(
-    vector_data=gdf_CLC,
-    output_crs=crs.to_wkt(),
-    # group_by='Land_Cover_Name',
-    resolution=(-10, 10),
-    categorical_enums= categorical_enums,
-    # fill=np.nan
-)
+import contextily as ctx
 
 
-
-# In[5]:
-
-
-
-resolution = 10
-bounds = gdf_CLC.total_bounds  # (minx, miny, maxx, maxy)
-# gdf_CLC['index'] = gdf_CLC['Code_18']
-gdf_CLC['index'] = gdf_CLC.index
-clc_rxr = GeoAnalysis.convert_to_rioxarray(gdf=gdf_CLC, 
-                                            variable="index", 
-                                            resolution=resolution, 
-                                            bounds=bounds
+CLC_Majadas_clipped_grid = GeoAnalysis.convert_to_xarray(gdf=gdf_CLC, 
+                                            # variable="index", 
+                                            resolution=(10,10), 
+                                            engine='geocube',
+                                            categorical_enums= categorical_enums,
+                                            crs=None
                                             )
-clc_rxr.plot.imshow()
 
 
-# In[6]:
+categorical_enums_list = [int(cc) for cc in categorical_enums['Code_18'].keys()] 
+idcat = np.where(np.array(categorical_enums_list)==212)[0]
+mask= CLC_Majadas_clipped_grid['Code_18']==idcat
 
+fig, axs = plt.subplots(1,2,sharex=True,sharey=True)
+gdf_CLC.plot(column='Code_18', ax=axs[0], legend=True, cmap="viridis")
+CLC_Majadas_clipped_grid['Code_18'].where(mask).plot.imshow(ax=axs[1],
+                                                            add_colorbar=False,
+                                                            alpha=0.2
+                                                            )
+# ctx.add_basemap(axs[1], source=ctx.providers.Stamen.Terrain
+#                 )
 
-clc_rxr.max()
-
-
-# In[7]:
-
-
-gdf_CLC['index']
-
-
-# In[8]:
-
-
+axs[0].set_aspect('equal')
+axs[1].set_aspect('equal')
 
 
 # In[9]:
 
-
-clc_rxr = clc_rxr.rio.write_crs(crs.to_wkt())
+CLC_Majadas_clipped_grid = CLC_Majadas_clipped_grid.rio.write_crs(crs.to_wkt())
 ETa_ds = ETa_ds.rio.write_crs(crs.to_wkt())
-clc_rxr = clc_rxr.rio.reproject_match(ETa_ds)
+CLC_Majadas_clipped_grid = CLC_Majadas_clipped_grid.rio.reproject_match(ETa_ds)
+
+# ETa_ds_reprojected = ETa_ds.rio.reproject("EPSG:4326")
 
 
-# In[10]:
+idcat = np.where(np.array(categorical_enums_list)==212)[0]
+mask= CLC_Majadas_clipped_grid['Code_18']==idcat
 
+fig, axs = plt.subplots(1,2,sharex=True,sharey=True)
+gdf_CLC.plot(column='Code_18', ax=axs[0], legend=True, cmap="viridis")
+CLC_Majadas_clipped_grid['Code_18'].where(mask).plot.imshow(ax=axs[1],
+                                                            add_colorbar=False
+                                                            )
+axs[0].set_aspect('equal')
+axs[1].set_aspect('equal')
 
-clc_rxr.plot.imshow()
+fig, axs = plt.subplots(1,2,sharex=True,sharey=True)
+gdf_CLC.plot(column='Code_18', ax=axs[0], legend=True, cmap="viridis")
+CLC_Majadas_clipped_grid['Code_18'].plot.imshow(ax=axs[1],
+                                                add_colorbar=True
+                                                )
+axs[0].set_aspect('equal')
+axs[1].set_aspect('equal')
 
-
-# In[11]:
-
+#%%
 
 results = []
-# Loop through each land cover type in the GeoDataFrame
-for land_cover, subset in CLC.groupby("Code_18"):
-    try:
-        # Ensure subset.geometry is a single geometry or a list of geometries
-        combined_geometry = subset.geometry.unary_union
-        # Clip the dataset using the combined geometry
-        mask = ETa_ds['ETa'].rio.clip([combined_geometry], crs=subset.crs, drop=True)
-        # Perform operations with the clipped dataset (e.g., calculate mean)
-        spatial_mean = mask.mean(dim=["x", "y"], skipna=True)
-        # Store the result
-        results.append({"Code_18": land_cover, "ETa_mean": spatial_mean})
-    except:
-        pass
-        
+for land_cover in categorical_enums_list:
+    print(land_cover)   
+    idcat = np.where(np.array(categorical_enums_list)==land_cover)[0]
+    mask= CLC_Majadas_clipped_grid['Code_18']==idcat    
+    if np.sum(mask)>0:
+        spatial_mean = ETa_ds['ETa'].isel(band=0).where(mask).mean(dim=["x", "y"], 
+                                                skipna=True)
+        results.append({"Code_18": land_cover, 
+                    "ETa_mean": spatial_mean.values}
+                   )
 import pandas as pd
 land_cover_means = pd.DataFrame(results)
-
-
-# In[12]:
-
-
-fig, ax = plt.subplots(1, 1, figsize=(10, 5))
-mask.isel.plot(column='Code_18', ax=ax, legend=True, cmap='viridis')
-ax.set_title("Majadas de Tietar Corine Land Cover")
-plt.show()
-
+land_cover_means.set_index('Code_18', inplace=True)
 
 # In[ ]:
-
-
-land_cover_means.set_index('Code_18',inplace=True)
-
-
-# In[ ]:
-
-
-mask.isel(band=0).isel(time=slice(0,8)).plot.imshow(x="x", y="y", 
-                        col="time", 
-                        col_wrap=4,
-                        )
-
-
-# In[ ]:
-
 
 # Agricultural areas
-Agricultural_areas = land_cover_means.loc[land_cover_means.index.astype(str).str.startswith('1')]
-Forest_areas = land_cover_means.loc[land_cover_means.index.astype(str).str.startswith('2')]
+Agricultural_areas = land_cover_means.loc[land_cover_means.index.astype(str).str.startswith('2')]
+Forest_areas = land_cover_means.loc[land_cover_means.index.astype(str).str.startswith('3')]
+
+Agricultural_areas_mean = np.nanmean(np.vstack(Agricultural_areas['ETa_mean'].to_numpy()),axis=0)
+Forest_areas_mean = np.nanmean(np.vstack(Forest_areas['ETa_mean'].to_numpy()),axis=0)
 
 
 # In[ ]:
+
+import matplotlib.pyplot as plt
+
+fig, axs = plt.subplots(1, 2, sharex=True, sharey=True)
+
+# Plot for Agricultural areas (red color)
+for i in Agricultural_areas.index:
+    idcat = np.where(np.array(categorical_enums_list)==i)[0]
+    mask = CLC_Majadas_clipped_grid['Code_18'] == idcat
+    CLC_Majadas_clipped_grid['Code_18'].where(mask).plot.imshow(
+        ax=axs[1],
+        add_colorbar=False,
+        cmap=plt.cm.Reds,  # Use a red colormap for agricultural areas
+        vmin=0, vmax=1  # Adjust color intensity if necessary
+    )
+
+# Plot for Forest areas (blue color)
+for i in Forest_areas.index:
+    idcat = np.where(np.array(categorical_enums_list)==i)[0]
+    mask = CLC_Majadas_clipped_grid['Code_18'] == idcat
+    CLC_Majadas_clipped_grid['Code_18'].where(mask).plot.imshow(
+        ax=axs[0],
+        add_colorbar=False,
+        cmap=plt.cm.Blues,  # Use a blue colormap for forest areas
+        vmin=0, vmax=1  # Adjust color intensity if necessary
+    )
+
+# Adjust the aspect ratio of the subplots
+axs[0].set_aspect('equal')
+axs[1].set_aspect('equal')
+
+plt.show()
 
 
 fig, ax = plt.subplots()
 
 for i in range(len(Agricultural_areas.index)):
-    Agricultural_areas.iloc[i]['ETa_mean'].isel(band=0).plot.scatter(x='time',ax=ax,
-                                                                    color='r',
-                                                                     alpha=0.2
-                                                                    )
+    ax.scatter(
+                x=ETa_ds.time,
+                y=Agricultural_areas_mean,
+                color='r',
+                 alpha=0.2
+                )
 
 for i in range(len(Agricultural_areas.index)):
-    Forest_areas.iloc[i]['ETa_mean'].isel(band=0).plot.scatter(x='time',
-                                                               ax=ax,
-                                                              color='green',
-                                                               alpha=0.2
-                                                              )
+    ax.scatter(
+                x=ETa_ds.time,
+                y=Forest_areas_mean,
+                color='g',
+                 alpha=0.2
+                )
 
+#%%
+from centum.delineation import ETAnalysis
+scenario_analysis_usingET = ETAnalysis()
 
-# In[ ]:
+ET_analysis_ds = ETa_ds.isel(band=0)
+ET_analysis_ds['ETp'] = ETp_ds['ETp'].isel(band=0)
 
+decision_ds, event_type = scenario_analysis_usingET.irrigation_delineation(ET_analysis_ds)
 
-# Ensure the CRS matches
-CLC.set_crs(crs.to_wkt(), inplace=True)
+#%%
+mask_IN = irr_geo_tools.get_mask_IN_patch_i(CLC_Majadas_clipped_grid['Code_18'],
+                                            patchid=1
+                                            )
+y_mean = decision_ds['ratio_ETap_local'].where(mask_IN, drop=True).mean(dim=['y', 'x'], 
+                                                                        skipna=True
+                                                                        )
 
-# Loop through unique land cover types to create masks and calculate means
-results = []
-for land_cover, subset in CLC.groupby("Code_18"):
-    # Clip the ETa data to the current land cover geometry
-    mask = ETa_ds.rio.clip(subset.geometry, crs=subset.crs, drop=True)
-    # Calculate the mean ETa for the current land cover type
-    spatial_mean = mask.mean().item()
-    # Store the result
-    results.append({"Code_18": land_cover, "ETa_mean": spatial_mean})
+fig, ax = plt.subplots()
+ax.scatter(
+            x=decision_ds.time.values,
+            y=y_mean,
+            color='r',
+             alpha=0.2
+            )
 
-# Convert the results into a DataFrame for easier viewing
-import pandas as pd
-land_cover_means = pd.DataFrame(results)
-
-
-# In[ ]:
-
-
-print(ETa_ds['ETa'].time)
-print(ETp_ds['ETp'].time)
-
-
-# In[ ]:
-
-
-ETa_ds['ETa'].isel(band=0).isel(time=slice(0,8)).time
-
-
-# In[ ]:
-
-
-ETp_ds['ETp'].isel(band=0).isel(time=slice(0,8)).time
-
-
-# In[ ]:
-
-
-fig, ax = plt.subplots(1, 1, figsize=(10, 5))
-CLC.plot(column='Code_18', ax=ax, legend=True, cmap='viridis')
-ax.set_title("Majadas de Tietar Corine Land Cover")
-plt.show()
-
-
-# **Show Earth Observation time serie to analyse**
-
-# In[ ]:
-
-
-ETp_ds['ETp'].isel(band=0).isel(time=slice(0,8)).plot.imshow(x="x", y="y", 
-                        col="time", 
-                        col_wrap=4,
-                        )
-
-
-# In[ ]:
-
-
-ETa_ds['ETa'].isel(band=0).isel(time=slice(0,8)).plot.imshow(x="x", y="y", 
-                        col="time", 
-                        col_wrap=4,
-                        )
+# for i in range(len(Agricultural_areas.index)):
+#     ax.scatter(
+#                 x=ETa_ds.time,
+#                 y=Forest_areas_mean,
+#                 color='g',
+#                  alpha=0.2
+#                 )
+    
+    
+# ncols = 4
+# time_steps = event_type.time.size
+# nrows = int(np.ceil(time_steps / ncols))  # Number of rows needed
+# fig, axes = plt.subplots(nrows=nrows, ncols=ncols, 
+#                          figsize=(15, nrows * 3)
+#                          )
+# pltC.plot_irrigation_schedule(event_type,time_steps,fig,axes)
 
 #%%
 
-ETa_ds_selec = ETa_ds.isel(time=slice(0, 25))
-x_coords = ETa_ds_selec['ETa'].coords['x'].values
-y_coords = ETa_ds_selec['ETa'].coords['y'].values
+# mask_IN = CLC_Majadas_clipped_grid==1
+# mask_OUT = irr_geo_tools.get_mask_OUT(rioxr_irrigation,
+#                                       )
 
-fig, ax = plt.subplots(figsize=(8, 6))
-im = ax.imshow(ETa_ds_selec['ETa'].isel(band=0).isel(time=0).values, cmap='coolwarm', origin='upper',
-               extent=[x_coords.min(), x_coords.max(), y_coords.min(), y_coords.max()])
-ax.set_title('ETa Time Series')  # Title for the time series plot
-ax.set_xlabel('X Coordinate')  # Label for the X axis
-ax.set_ylabel('Y Coordinate')  # Label for the Y axis
-ax.axis('square')  # Make the axis square for proper aspect ratio
+event_type_node_IN = event_type.where(mask_IN, drop=True).mean(['x','y'])
+# event_type_node_OUT = event_type.where(mask_OUT, drop=True).mean(['x','y'])
 
-cbar = fig.colorbar(im, ax=ax, orientation='vertical', extend='both', label='ETa')
+event_type_node_IN.plot()
 
-def update(frame):
-    im.set_data(ETa_ds_selec['ETa'].isel(band=0).isel(time=frame).values)
-    ax.set_title(f'ETa Time Step: {frame}')
-    return [im]
-
-ani = FuncAnimation(fig, update, frames=len(ETa_ds_selec['time']), interval=200, blit=True)
-HTML(ani.to_jshtml())  # Show the animation in the notebook
-
-
+# np.sum(event_type)

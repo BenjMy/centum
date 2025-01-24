@@ -17,6 +17,8 @@ parts:
     chapters:
     - file: tutos/plot_centum_delineate_AQUACROP
     - file: tutos/plot_centum_delineate_POC
+  - caption: Real validation datasets
+    chapters:
     - file: tutos/plot_centum_Tree_Grass
   - caption: API documentation
     chapters:

@@ -6,7 +6,7 @@ identify thresholds for decision-making based on changes in these ratios, and ca
 
 Attributes:
     ETa_name (str): Name of the variable representing actual evapotranspiration in the dataset. 
-                    Default is 'ACT. ETRA'.
+                    Default is 'ETa'.
     ETp_name (str): Name of the variable representing potential evapotranspiration in the dataset. 
                     Default is 'ETp'.
     threshold_local (float): Threshold value for identifying significant changes in local ETa/ETp ratios. 
@@ -22,7 +22,7 @@ import numpy as np
 
 @dataclass
 class ETAnalysis:
-    ETa_name: str = 'ACT. ETRA'
+    ETa_name: str = 'ETa'
     ETp_name: str = 'ETp'
     threshold_local: float = -0.25
     threshold_regional: float = -0.25
@@ -31,7 +31,7 @@ class ETAnalysis:
     def compute_ratio_ETap_local(
         self,
         ds_analysis: xr.Dataset,
-        ETa_name: str = "ACT. ETRA",
+        ETa_name: str = "ETa",
         ETp_name: str = "ETp",
         time_window: int = None,
     ) -> xr.Dataset:
@@ -43,7 +43,7 @@ class ETAnalysis:
         ds_analysis : xr.Dataset
             The dataset containing ETa and ETp data.
         ETa_name : str, optional
-            The variable name for ETa. Default is 'ACT. ETRA'.
+            The variable name for ETa. Default is 'ETa'.
         ETp_name : str, optional
             The variable name for ETp. Default is 'ETp'.
         time_window : int, optional
@@ -73,7 +73,7 @@ class ETAnalysis:
     def compute_ratio_ETap_regional(
         self,
         ds_analysis: xr.Dataset,
-        ETa_name: str = "ACT. ETRA",
+        ETa_name: str = "ETa",
         ETp_name: str = "ETp",
         stat: str = "mean",
         window_size_x: int = 10,  # Window size in km for regional averaging
@@ -87,7 +87,7 @@ class ETAnalysis:
         ds_analysis : xr.Dataset
             The dataset containing ETa and ETp data.
         ETa_name : str, optional
-            The variable name for ETa. Default is 'ACT. ETRA'.
+            The variable name for ETa. Default is 'ETa'.
         ETp_name : str, optional
             The variable name for ETp. Default is 'ETp'.
         stat : str, optional
@@ -105,7 +105,8 @@ class ETAnalysis:
         if stat == "mean":
             # Compute regional ETa and ETp
             reg_analysis = self.compute_regional_ETap(
-                ds_analysis, stat=stat, window_size_x=window_size_x
+                ds_analysis, window_size_x=window_size_x,
+                window_size_y=window_size_x
             )
     
             # Compute the regional ratio of ETa/ETp
@@ -127,28 +128,47 @@ class ETAnalysis:
         return ds_analysis
     
     
-    def compute_regional_ETap(self, 
-                              ds_analysis: xr.Dataset, stat: str, window_size_x: int) -> xr.Dataset:
+    def compute_regional_ETap(
+        self,
+        ds_analysis: xr.Dataset,
+        window_size_x: int = 1000,  # Spatial window size in meters (default: 1 km)
+        window_size_y: int = 1000,  # Spatial window size in meters (default: 1 km)
+    ) -> xr.Dataset:
         """
-        Placeholder function to compute regional ETa and ETp.
-    
+        Computes the regional mean of ETa and ETp using a moving window.
+
         Parameters
         ----------
         ds_analysis : xr.Dataset
-            The dataset containing ETa and ETp data.
-        stat : str
-            The statistic to compute for regional aggregation (e.g., 'mean').
-        window_size_x : int
-            The spatial window size in kilometers for regional averaging.
-    
+            The dataset containing ETa and ETp data in a projected CRS with units in meters.
+        window_size_x : int, optional
+            The width of the moving window in meters. Default is 1000 (1 km).
+        window_size_y : int, optional
+            The height of the moving window in meters. Default is 1000 (1 km).
+
         Returns
         -------
         xr.Dataset
-            A dataset containing spatially averaged ETa and ETp.
+            A dataset with spatially averaged ETa and ETp for each pixel.
         """
-        # Implement spatial aggregation logic here
-        # This is a placeholder for the actual implementation
-        return ds_analysis
+        # Ensure the dataset has x and y dimensions (e.g., projected coordinates)
+        if not all(dim in ds_analysis.dims for dim in ["x", "y"]):
+            raise ValueError("The dataset must have 'x' and 'y' dimensions in meters.")
+
+        # Compute the number of grid cells corresponding to the window size
+        x_resolution = abs(ds_analysis.x[1] - ds_analysis.x[0])
+        y_resolution = abs(ds_analysis.y[1] - ds_analysis.y[0])
+        window_cells_x = max(1, int(window_size_x / x_resolution))
+        window_cells_y = max(1, int(window_size_y / y_resolution))
+
+        # Apply a moving average using the rolling method
+        reg_analysis = ds_analysis.rolling(
+            x=window_cells_x, y=window_cells_y, center=True
+        ).mean()
+
+        return reg_analysis
+
+
     
     
     def apply_time_window_mean(self,
@@ -368,8 +388,7 @@ class ETAnalysis:
         decision_ds = self.compute_bool_threshold_decision_regional(decision_ds)
 
         # Drop initial time steps based on time mask
-        time_mask = decision_ds['time'] > np.timedelta64(0, 'D')
-        decision_ds = decision_ds.where(time_mask, drop=True)
+        time_mask = decision_ds['time'] > np.datetime64('0', 'D')
 
         # Apply specific rules for rain and irrigation
         decision_ds = self.apply_rules_rain(decision_ds)
