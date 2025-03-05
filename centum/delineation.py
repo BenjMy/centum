@@ -34,6 +34,7 @@ class ETAnalysis:
         ETa_name: str = "ETa",
         ETp_name: str = "ETp",
         time_window: int = None,
+        **kwargs
     ) -> xr.Dataset:
         """
         Computes the local ETa/ETp ratio and its temporal differences.
@@ -65,7 +66,9 @@ class ETAnalysis:
         # Apply rolling time-window mean if time_window is specified
         if time_window is not None:
             ds_analysis = self.apply_time_window_mean(
-                ds_analysis, variable="ratio_ETap_local", time_window=time_window
+                ds_analysis, 
+                variable="ratio_ETap_local", 
+                time_window=time_window
             )
     
         return ds_analysis
@@ -102,6 +105,7 @@ class ETAnalysis:
         xr.Dataset
             The dataset with added regional ETa/ETp ratio and temporal differences.
         """
+        
         if stat == "mean":
             # Compute regional ETa and ETp
             reg_analysis = self.compute_regional_ETap(
@@ -122,7 +126,9 @@ class ETAnalysis:
             # Apply rolling time-window mean if time_window is specified
             if time_window is not None:
                 ds_analysis = self.apply_time_window_mean(
-                    ds_analysis, variable="ratio_ETap_regional_spatial_avg", time_window=time_window
+                    ds_analysis, 
+                    variable="ratio_ETap_regional_spatial_avg", 
+                    time_window=time_window
                 )
     
         return ds_analysis
@@ -305,7 +311,8 @@ class ETAnalysis:
                                     abs(decision_ds['ratio_ETap_regional_spatial_avg_time_avg']) 
                                     >= abs(decision_ds['ratio_ETap_local_time_avg'])
                                     )
-        
+        # np.sum(decision_ds['condRain1'])
+        # np.sum(decision_ds['condRain1'])
         # Final condition for rain
         decision_ds['condRain'] = decision_ds['condRain1'] & decision_ds['condRain2']
         
@@ -377,12 +384,22 @@ class ETAnalysis:
                                threshold_local=0.25,
                                threshold_regional=0.25,
                                time_window=10,
+                               **kwargs
                                ):
         
         # Compute local and regional ETa/ETp ratios
-        decision_ds = self.compute_ratio_ETap_local(decision_ds,time_window=time_window)
-        decision_ds = self.compute_ratio_ETap_regional(decision_ds,time_window=time_window)
+        decision_ds = self.compute_ratio_ETap_local(decision_ds,
+                                                    time_window=time_window,
+                                                    **kwargs
+                                                    )
+        decision_ds = self.compute_ratio_ETap_regional(decision_ds,
+                                                       time_window=time_window,
+                                                       **kwargs
+                                                       )
 
+        # decision_ds['ratio_ETap_local_diff'].sum()
+        # decision_ds['ratio_ETap_local_time_avg'].sum()
+        
         # Apply local and regional threshold decision rules
         decision_ds = self.compute_bool_threshold_decision_local(decision_ds)
         decision_ds = self.compute_bool_threshold_decision_regional(decision_ds)

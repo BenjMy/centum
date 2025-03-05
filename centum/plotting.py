@@ -30,9 +30,9 @@ def plot_irrigation_schedule(event_type,time_steps,fig,axes):
                             )
             
             # Set the title with the time step
-            event_type['days'] = event_type['time'] / np.timedelta64(1, 'D')
+            # event_type['days'] = event_type['time'] / np.timedelta64(1, 'D')
     
-            ax.set_title(f'Day {np.round(event_type.days.values[i],1)}')
+            # ax.set_title(f'Day {np.round(event_type.days.values[i],1)}')
             ax.set_xlabel('x')  # Label for the x-axis
             ax.set_ylabel('y')  # Label for the y-axis
         else:

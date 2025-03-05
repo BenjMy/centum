@@ -135,7 +135,7 @@ categorical_enums = {'Code_18': clc_codes}
 
 GeoAnalysis = IrrigationDistrict(Majadas_CLC_shapefile)
 gdf_CLC = GeoAnalysis.load_shapefile()
-
+gdf_CLC.columns
 # Plot the satellite image
 fig, axs = plt.subplots(1,2,figsize=(10, 10))
 
@@ -165,8 +165,6 @@ plt.show()
 
 #%%
 
-
-import contextily as ctx
 
 
 CLC_Majadas_clipped_grid = GeoAnalysis.convert_to_xarray(gdf=gdf_CLC, 
