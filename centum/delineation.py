@@ -5,15 +5,15 @@ This class provides methods to compute ratios of actual evapotranspiration (ETa)
 identify thresholds for decision-making based on changes in these ratios, and calculate rolling time means.
 
 Attributes:
-    ETa_name (str): Name of the variable representing actual evapotranspiration in the dataset. 
+    ETa_name (str): Name of the variable representing actual evapotranspiration in the dataset.
                     Default is 'ETa'.
-    ETp_name (str): Name of the variable representing potential evapotranspiration in the dataset. 
+    ETp_name (str): Name of the variable representing potential evapotranspiration in the dataset.
                     Default is 'ETp'.
-    threshold_local (float): Threshold value for identifying significant changes in local ETa/ETp ratios. 
+    threshold_local (float): Threshold value for identifying significant changes in local ETa/ETp ratios.
                               Default is -0.25.
-    threshold_regional (float): Threshold value for identifying significant changes in regional ETa/ETp ratios. 
+    threshold_regional (float): Threshold value for identifying significant changes in regional ETa/ETp ratios.
                                 Default is -0.25.
-    stat (str): Statistical operation to apply to ETa/ETp ratios. Options include 'mean', 'sum', etc. 
+    stat (str): Statistical operation to apply to ETa/ETp ratios. Options include 'mean', 'sum', etc.
                 Default is 'mean'.
 '''
 from dataclasses import dataclass
@@ -28,6 +28,55 @@ class ETAnalysis:
     threshold_regional: float = -0.25
 
 
+def check_data_validity(self, ds: xr.Dataset):
+        """
+        Perform pre-processing checks before irrigation delimitation.
+
+        Parameters:
+        ds (xr.Dataset): Input dataset containing ETa, ETp, and time dimensions.
+
+        Raises:
+        ValueError: If critical issues are found in the dataset.
+        """
+
+        issues = []
+
+        # Check for missing time steps
+        if 'time' not in ds:
+            issues.append("❌ Time dimension is missing in the dataset.")
+        else:
+            time_diff = np.diff(ds['time'].values)
+            expected_diff = np.timedelta64(1, 'D')  # Expected daily frequency
+            if not np.all(time_diff == expected_diff):
+                issues.append("⚠️ Time data gaps detected. Ensure daily ETa values are continuous.")
+
+        # Check for missing pixels (NaNs in ETa or ETp)
+        if self.ETa_name in ds:
+            missing_pixels_ETA = ds[self.ETa_name].isnull().sum().item()
+            if missing_pixels_ETA > 0:
+                issues.append(f"⚠️ ETa contains {missing_pixels_ETA} missing pixels.")
+        else:
+            issues.append(f"❌ {self.ETa_name} variable is missing in the dataset.")
+
+        if self.ETp_name in ds:
+            missing_pixels_ETP = ds[self.ETp_name].isnull().sum().item()
+            if missing_pixels_ETP > 0:
+                issues.append(f"⚠️ ETp contains {missing_pixels_ETP} missing pixels.")
+        else:
+            issues.append(f"❌ {self.ETp_name} variable is missing in the dataset.")
+
+        # Check CRS consistency
+        if not hasattr(ds, 'crs'):
+            issues.append("⚠️ CRS information is missing. Ensure all datasets use the same projection.")
+
+        # Print warnings or raise errors
+        if issues:
+            for issue in issues:
+                print(issue)
+            raise ValueError("Data validation failed. Please address the above issues before proceeding.")
+
+        print("✅ Data validation passed. Ready for irrigation delineation.")
+
     def compute_ratio_ETap_local(
         self,
         ds_analysis: xr.Dataset,
@@ -38,7 +87,7 @@ class ETAnalysis:
     ) -> xr.Dataset:
         """
         Computes the local ETa/ETp ratio and its temporal differences.
-    
+
         Parameters
         ----------
         ds_analysis : xr.Dataset
@@ -49,7 +98,7 @@ class ETAnalysis:
             The variable name for ETp. Default is 'ETp'.
         time_window : int, optional
             The rolling time window size for temporal averaging. Default is None.
-    
+
         Returns
         -------
         xr.Dataset
@@ -57,20 +106,20 @@ class ETAnalysis:
         """
         # Compute the local ratio of ETa/ETp
         ds_analysis["ratio_ETap_local"] = ds_analysis[ETa_name] / ds_analysis[ETp_name]
-    
+
         # Compute the absolute temporal difference of the local ratio
         ds_analysis["ratio_ETap_local_diff"] = abs(
             ds_analysis["ratio_ETap_local"].diff(dim="time")
         )
-    
+
         # Apply rolling time-window mean if time_window is specified
         if time_window is not None:
             ds_analysis = self.apply_time_window_mean(
-                ds_analysis, 
-                variable="ratio_ETap_local", 
+                ds_analysis,
+                variable="ratio_ETap_local",
                 time_window=time_window
             )
-    
+
         return ds_analysis
 
     def compute_ratio_ETap_regional(
@@ -84,7 +133,7 @@ class ETAnalysis:
     ) -> xr.Dataset:
         """
         Computes the regional ETa/ETp ratio and its temporal differences.
-    
+
         Parameters
         ----------
         ds_analysis : xr.Dataset
@@ -99,41 +148,41 @@ class ETAnalysis:
             The spatial window size in kilometers for regional averaging. Default is 10.
         time_window : int, optional
             The rolling time window size for temporal averaging. Default is None.
-    
+
         Returns
         -------
         xr.Dataset
             The dataset with added regional ETa/ETp ratio and temporal differences.
         """
-        
+
         if stat == "mean":
             # Compute regional ETa and ETp
             reg_analysis = self.compute_regional_ETap(
                 ds_analysis, window_size_x=window_size_x,
                 window_size_y=window_size_x
             )
-    
+
             # Compute the regional ratio of ETa/ETp
             ds_analysis["ratio_ETap_regional_spatial_avg"] = (
                 reg_analysis[ETa_name] / reg_analysis[ETp_name]
             )
-    
+
             # Compute the absolute temporal difference of the regional ratio
             ds_analysis["ratio_ETap_regional_diff"] = abs(
                 ds_analysis["ratio_ETap_regional_spatial_avg"].diff(dim="time")
             )
-    
+
             # Apply rolling time-window mean if time_window is specified
             if time_window is not None:
                 ds_analysis = self.apply_time_window_mean(
-                    ds_analysis, 
-                    variable="ratio_ETap_regional_spatial_avg", 
+                    ds_analysis,
+                    variable="ratio_ETap_regional_spatial_avg",
                     time_window=time_window
                 )
-    
+
         return ds_analysis
-    
-    
+
+
     def compute_regional_ETap(
         self,
         ds_analysis: xr.Dataset,
@@ -175,13 +224,13 @@ class ETAnalysis:
         return reg_analysis
 
 
-    
-    
+
+
     def apply_time_window_mean(self,
                                ds_analysis: xr.Dataset, variable: str, time_window: int) -> xr.Dataset:
         """
         Applies a rolling time-window mean to a specified variable.
-    
+
         Parameters
         ----------
         ds_analysis : xr.Dataset
@@ -190,7 +239,7 @@ class ETAnalysis:
             The name of the variable to which the rolling mean is applied.
         time_window : int
             The rolling time window size.
-    
+
         Returns
         -------
         xr.Dataset
@@ -199,18 +248,18 @@ class ETAnalysis:
         time_diff = np.diff(ds_analysis["time"].values)
         time_diff_days = time_diff / np.timedelta64(1, "D")
         time_mask = np.concatenate([[True], time_diff_days <= 1.1])
-    
+
         ds_analysis[f"{variable}_time_avg"] = (
             ds_analysis[variable]
             .where(time_mask[:, np.newaxis, np.newaxis], drop=False)
             .rolling(time=time_window, center=True)
             .mean()
         )
-    
+
         return ds_analysis
 
 
-    def compute_bool_threshold_decision_local(self, ds_analysis: xr.Dataset, 
+    def compute_bool_threshold_decision_local(self, ds_analysis: xr.Dataset,
                                               checkp: str = "ratio_ETap_local_time_avg") -> xr.Dataset:
         """
         Computes a boolean threshold decision for the local ETa/ETp ratio.
@@ -231,32 +280,9 @@ class ETAnalysis:
         """
         ds_analysis["threshold_local"] = xr.where(ds_analysis[checkp] > self.threshold_local, True, False)
         return ds_analysis
-    
-    
-    # def compute_bool_threshold_decision_regional(self, ds_analysis: xr.Dataset) -> xr.Dataset:
-    #     ds_analysis["threshold_regional"] = xr.DataArray(False, 
-    #                                                       coords=ds_analysis.coords, 
-    #                                                       dims=ds_analysis.dims)
-    #     checkon = ds_analysis["ratio_ETap_regional_diff"]
-    #     ds_analysis["threshold_regional"] = xr.where(checkon <= self.threshold_regional, True, False)
 
-    #     return ds_analysis
-    
-    # def compute_bool_threshold_decision_regional(ds_analysis,
-    #                                              threshold_regional=0.25,
-    #                                              checkp='ratio_ETap_regional_spatial_avg_time_avg'
-    #                                              ):
-        
-    #     ds_analysis["threshold_regional"] = xr.DataArray(False, 
-    #                                                   coords=ds_analysis.coords, 
-    #                                                   dims=ds_analysis.dims
-    #                                                      )
-    #     checkon = ds_analysis[checkp]
-    #     ds_analysis["threshold_regional"] = xr.where(checkon > threshold_regional, True, False)
-    #     return ds_analysis
-    
-    def compute_bool_threshold_decision_regional(self, 
-                                                 ds_analysis: xr.Dataset, 
+    def compute_bool_threshold_decision_regional(self,
+                                                 ds_analysis: xr.Dataset,
                                                  checkp: str = "ratio_ETap_regional_spatial_avg_time_avg") -> xr.Dataset:
         """
         Computes a boolean threshold decision for the regional ETa/ETp ratio.
@@ -277,12 +303,12 @@ class ETAnalysis:
         """
         ds_analysis["threshold_regional"] = xr.where(ds_analysis[checkp] > self.threshold_regional, True, False)
         return ds_analysis
-        
+
 
     def define_decision_thresholds(self, ds_analysis: xr.Dataset) -> xr.Dataset:
         ds_analysis = self.compute_bool_threshold_decision_local(ds_analysis)
         ds_analysis = self.compute_bool_threshold_decision_regional(ds_analysis)
-        
+
         return ds_analysis
 
     def compute_rolling_time_mean(self, ds_analysis: xr.Dataset) -> xr.Dataset:
@@ -305,17 +331,15 @@ class ETAnalysis:
         """
         # Condition 1: Threshold for regional ETa/ETp ratio
         decision_ds['condRain1'] = decision_ds['threshold_regional'] == 1
-        
+
         # Condition 2: Comparison between regional and local ETa/ETp ratios
         decision_ds['condRain2'] = (
-                                    abs(decision_ds['ratio_ETap_regional_spatial_avg_time_avg']) 
+                                    abs(decision_ds['ratio_ETap_regional_spatial_avg_time_avg'])
                                     >= abs(decision_ds['ratio_ETap_local_time_avg'])
                                     )
-        # np.sum(decision_ds['condRain1'])
-        # np.sum(decision_ds['condRain1'])
         # Final condition for rain
         decision_ds['condRain'] = decision_ds['condRain1'] & decision_ds['condRain2']
-        
+
         return decision_ds
 
     def apply_rules_irrigation(self, decision_ds: xr.Dataset) -> xr.Dataset:
@@ -334,17 +358,17 @@ class ETAnalysis:
         """
         # Condition 1: Threshold for local ETa/ETp ratio
         decision_ds['condIrrigation1'] = decision_ds['threshold_local'] == 1
-        
+
         # Condition 2: Comparison between local and regional ETa/ETp ratios (local ratio must be greater than 1.5 times the regional ratio)
         a = abs(decision_ds['ratio_ETap_local_time_avg'])
         b = abs(1.5 * decision_ds['ratio_ETap_regional_spatial_avg_time_avg'])
         decision_ds['condIrrigation2'] = a > b
-        
+
         # Final condition for irrigation
         decision_ds['condIrrigation'] = decision_ds['condIrrigation1'] & decision_ds['condIrrigation2']
-        
+
         return decision_ds
-    
+
     def classify_event(
         self,
         decision_ds: xr.Dataset,
@@ -353,7 +377,7 @@ class ETAnalysis:
     ) -> xr.DataArray:
         """
         Classifies events into irrigation, rain, or no event based on conditions.
-    
+
         Parameters
         ----------
         decision_ds : xr.Dataset
@@ -362,7 +386,7 @@ class ETAnalysis:
             The name of the variable indicating irrigation conditions. Default is "condIrrigation".
         rain_condition : str, optional
             The name of the variable indicating rain conditions. Default is "condRain".
-    
+
         Returns
         -------
         xr.DataArray
@@ -386,7 +410,12 @@ class ETAnalysis:
                                time_window=10,
                                **kwargs
                                ):
-        
+
+
+
+        # Perform pre-checks before processing
+        self.check_data_validity(decision_ds)
+
         # Compute local and regional ETa/ETp ratios
         decision_ds = self.compute_ratio_ETap_local(decision_ds,
                                                     time_window=time_window,
@@ -399,7 +428,7 @@ class ETAnalysis:
 
         # decision_ds['ratio_ETap_local_diff'].sum()
         # decision_ds['ratio_ETap_local_time_avg'].sum()
-        
+
         # Apply local and regional threshold decision rules
         decision_ds = self.compute_bool_threshold_decision_local(decision_ds)
         decision_ds = self.compute_bool_threshold_decision_regional(decision_ds)
@@ -413,18 +442,6 @@ class ETAnalysis:
 
         # Classify events based on delineation rules
         event_type = self.classify_event(decision_ds)
-        
-        # Create a dataset event_type of dim x,y,times
-        # -------------------------------------------------------------------------
-        # event_type = xr.DataArray(0, 
-        #                           coords=decision_ds.coords, 
-        #                           dims=decision_ds.dims
-        #                           )
-        # event_type = event_type.where(time_mask,drop=True)
-    
-        # Drop time 0 as the analysis is conducted on values differences (ti - t0)
-        # -------------------------------------------------------------------------
-        # time_mask = decision_ds['time'] > np.timedelta64(time_window, 'D')
+
 
         return decision_ds, event_type
-

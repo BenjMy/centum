@@ -23,9 +23,24 @@ Centum relies on two main models:
   
 ## ✨ Key Features
 - Water Delineation: Map areas of interest using the ETa/ETp ratio.
+- Type of irrigation classification
 - Water Net Quantification: Calculate net water use based on ET baselines from Earth Observation data.
   
 ## 🌍 Additional Capabilities (expected)
 - Illegal Water Pumping Detection: Identify unsanctioned water use.
 - Ecosystem Resilience: Assess ecosystem drought resilience and green water footprint, aiding in ecosystem protection.
+
+## Expected release 
+
+- [ ] V1.0: water delineation algoritm tested for synthetic irrigation time series (generated using AQUACROP)
+- V1.*: 
+  - [ ] test delineation over real field site data 
+  - [ ] result visualisation utilities
+  - [ ] ...
+- V2.0: irrigation water quantification 
+- V3.0: type of irrigation identification
+- V4.0: use ET from DA as input to estimate uncertainties
+- V*: 
+  - Illegal Water Pumping Detection
+  - Ecosystem Resilience (Green water footprint evaluation)
 
