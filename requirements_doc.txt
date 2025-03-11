@@ -4,4 +4,5 @@ jupyterlab-myst
 sphinx-gallery
 sphinx-rtd-theme
 pooch
+geocube
 git+https://github.com/thoellrich/july.git@fix-mpl.cbook.MatplotlibDepreciationWarning
