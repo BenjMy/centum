@@ -15,20 +15,29 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-fig, ax = plt.subplots(1, 1, figsize=(10, 5))
-mask.isel.plot(column='Code_18', ax=ax, legend=True, cmap='viridis')
-ax.set_title("Majadas de Tietar Corine Land Cover")
-plt.show()
+GeoAnalysis = IrrigationDistrict(Majadas_CLC_shapefile)
+gdf_CLC = GeoAnalysis.load_shapefile()
+resolution = 10
+bounds = gdf_CLC.total_bounds  # (minx, miny, maxx, maxy)
+gdf_CLC['index'] = gdf_CLC['Code_18']
+clc_rxr = GeoAnalysis.convert_to_rioxarray(gdf=gdf_CLC, 
+                                            variable="index", 
+                                            resolution=resolution, 
+                                            bounds=bounds
+                                            )
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mAttributeError[0m                            Traceback (most recent call last)
-Cell [0;32mIn[12], line 2[0m
-[1;32m      1[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m1[39m, [38;5;241m1[39m, figsize[38;5;241m=[39m([38;5;241m10[39m, [38;5;241m5[39m))
-[0;32m----> 2[0m [43mmask[49m[38;5;241;43m.[39;49m[43misel[49m[38;5;241;43m.[39;49m[43mplot[49m(column[38;5;241m=[39m[38;5;124m'[39m[38;5;124mCode_18[39m[38;5;124m'[39m, ax[38;5;241m=[39max, legend[38;5;241m=[39m[38;5;28;01mTrue[39;00m, cmap[38;5;241m=[39m[38;5;124m'[39m[38;5;124mviridis[39m[38;5;124m'[39m)
-[1;32m      3[0m ax[38;5;241m.[39mset_title([38;5;124m"[39m[38;5;124mMajadas de Tietar Corine Land Cover[39m[38;5;124m"[39m)
-[1;32m      4[0m plt[38;5;241m.[39mshow()
+Cell [0;32mIn[5], line 6[0m
+[1;32m      4[0m bounds [38;5;241m=[39m gdf_CLC[38;5;241m.[39mtotal_bounds  [38;5;66;03m# (minx, miny, maxx, maxy)[39;00m
+[1;32m      5[0m gdf_CLC[[38;5;124m'[39m[38;5;124mindex[39m[38;5;124m'[39m] [38;5;241m=[39m gdf_CLC[[38;5;124m'[39m[38;5;124mCode_18[39m[38;5;124m'[39m]
+[0;32m----> 6[0m clc_rxr [38;5;241m=[39m [43mGeoAnalysis[49m[38;5;241;43m.[39;49m[43mconvert_to_rioxarray[49m(gdf[38;5;241m=[39mgdf_CLC, 
+[1;32m      7[0m                                             variable[38;5;241m=[39m[38;5;124m"[39m[38;5;124mindex[39m[38;5;124m"[39m, 
+[1;32m      8[0m                                             resolution[38;5;241m=[39mresolution, 
+[1;32m      9[0m                                             bounds[38;5;241m=[39mbounds
+[1;32m     10[0m                                             )
 
-[0;31mAttributeError[0m: 'function' object has no attribute 'plot'
+[0;31mAttributeError[0m: 'IrrigationDistrict' object has no attribute 'convert_to_rioxarray'
 

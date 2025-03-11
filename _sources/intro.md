@@ -12,6 +12,13 @@ The package supports the delineation of irrigated areas. Built with a modular an
 - **Open Source**: Licensed under GPL-3.0 for collaborative development.
 
 
+::: {admonition} Centum is Model-Agnostic
+:class: tip
+Inputs for Centum are NetCDF files, which can be produced by any kind of energy/water balance model.
+:::
+
+
+
 ## Release roadmap
 - [ ] V1.0: water delineation algoritm tested for synthetic irrigation time series (generated using AQUACROP)
 - V1.*: 
