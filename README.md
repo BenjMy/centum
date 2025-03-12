@@ -10,17 +10,20 @@ pip install centum
 ```
 
 # 💦  Centum
-Centum, derived from the Latin word for "a hundred," is a Python package designed to streamline water accounting through energy and water balance modeling. It equips users with tools to enhance water use efficiency, detect illegal water pumping, and protect essential mountain ecosystems, addressing key water management challenges.
+Centum, derived from the Latin word for "a hundred," is a Python package designed to streamline water accounting through energy and water balance modeling inputs. It equips users with tools to enhance water use efficiency, detect illegal water pumping, and protect essential mountain ecosystems, addressing key water management challenges.
 
 ## 🔍 Key inputs
-- NetCDF files: These should be imported as rioxarray datasets and contain essential variables like ETa (Actual Evapotranspiration) and ETp (Potential Evapotranspiration).
+For **irrigation water delimitation**:
+- ETa and ETp (single NetCDF file) from Earth Observations
+
+Additionnaly for **irrigation water quantification**:
+- ETa from a water balance model (baseline without irrigation scheme)
+
+Optionnaly:
+- Corinne Land Cover
 - Irrigation shapefiles: Import these with geopandas to define and analyze irrigation areas.
 
-## 🔥 Core Models Used
-Centum relies on two main models:
-- Energy Balance Modeling 🌞: Provides ETa outputs using pyTSEB.
-- Soil Water Balance Modeling 💧: Supplies ETa outputs using pyCATHY.
-  
+
 ## ✨ Key Features
 - Water Delineation: Map areas of interest using the ETa/ETp ratio.
 - Type of irrigation classification
@@ -30,9 +33,15 @@ Centum relies on two main models:
 - Illegal Water Pumping Detection: Identify unsanctioned water use.
 - Ecosystem Resilience: Assess ecosystem drought resilience and green water footprint, aiding in ecosystem protection.
 
-## Expected release 
+## 🔥 Core Models Used for testing
+Centum relies on two main models for the testing datasets:
+- Energy Balance Modeling 🌞: Provides ETa outputs using pyTSEB.
+- Soil Water Balance Modeling 💧: Supplies ETa outputs using pyCATHY.
+  
 
-- [ ] V1.0: water delineation algoritm tested for synthetic irrigation time series (generated using AQUACROP)
+## Expected releases roadmap
+
+- [x] V1.0: water delineation algoritm tested for synthetic irrigation time series (generated using AQUACROP)
 - V1.*: 
   - [ ] test delineation over real field site data 
   - [ ] result visualisation utilities
@@ -43,4 +52,20 @@ Centum relies on two main models:
 - V*: 
   - Illegal Water Pumping Detection
   - Ecosystem Resilience (Green water footprint evaluation)
+  - QGIS plugin
+
+
+
+## References 
+
+Water delineation algoritm: 
+- ETa/ETp ratio
+
+Irrigation water quantification:
+
+Type of irrigation identification:
+- ETa versus SM from SAR ratio
+
+ET from DA
+
 
