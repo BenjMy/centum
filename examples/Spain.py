@@ -30,8 +30,8 @@ from centum import utils
 import geopandas as gpd
 
 
-rootPathData= Path('/home/ben/Nextcloud/BenCSIC/Codes/tech4agro/test_Majadas_centum_dataset/')
-
+# rootPathData= Path('/home/ben/Nextcloud/BenCSIC/Codes/tech4agro/test_Majadas_centum_dataset/')
+rootPathData= Path('/home/z0272571a@CAMPUS.CSIC.ES/Nextcloud/BenCSIC/Codes/Tech4agro_org/test_Majadas_centum_dataset/')
 ###############################################################################
 # Step 1: Download datasets using Pooch
 # Pooch is used to manage the dataset downloads from the specified GitHub repository.

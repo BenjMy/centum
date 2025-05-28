@@ -16,31 +16,113 @@ Attributes:
     stat (str): Statistical operation to apply to ETa/ETp ratios. Options include 'mean', 'sum', etc.
                 Default is 'mean'.
 '''
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import xarray as xr
 import numpy as np
+from rich.console import Console
+from dask.diagnostics import ProgressBar
+from rich.panel import Panel
+from rich.logging import RichHandler
+from rich.markdown import Markdown
+from rich.text import Text
+import logging
+import os 
+
 
 @dataclass
 class ETAnalysis:
+    
     ETa_name: str = 'ETa'
     ETp_name: str = 'ETp'
     threshold_local: float = -0.25
     threshold_regional: float = -0.25
 
+    log_file: str = "ET_analysis_log.md"
+    console: Console = field(default_factory=Console, init=False, repr=False)
+    logger: logging.Logger = field(init=False, repr=False)
 
-def check_data_validity(self, ds: xr.Dataset):
+    def __post_init__(self):
+        # Remove existing log file if it exists
+        if os.path.exists(self.log_file):
+            os.remove(self.log_file)
+
+        # Setup logger
+        self.logger = logging.getLogger("ETAnalysisLogger")
+        self.logger.setLevel(logging.DEBUG)
+        self.logger.propagate = False  # prevent double logging or interference
+
+        # Only add handlers if none exist
+        if not self.logger.hasHandlers():
+            # rich_handler = RichHandler(console=self.console, rich_tracebacks=True, markup=True)
+            # rich_handler.setLevel(logging.INFO)
+            
+            file_handler = logging.FileHandler(self.log_file, mode='a')
+            file_handler.setFormatter(logging.Formatter('%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
+            file_handler.setLevel(logging.DEBUG)
+
+            # self.logger.addHandler(rich_handler)
+            self.logger.addHandler(file_handler)
+
+        self.logger.info("📋 ETAnalysis initialized")
+        
+        
+    def log_panel(self, title: str, **kwargs):
+        # Format content with rich markup for console display
+        content_lines = [f"[bold]{key}:[/bold] {value}" for key, value in kwargs.items()]
+        content = "\n".join(content_lines)
+    
+        # Compose markdown header and content lines
+        md_title = f"# {title}"
+        md_lines = [f"- **{key}:** {value}" for key, value in kwargs.items()]
+        
+        panel = kwargs.pop('panel', False)
+
+        if panel:
+            toconsole = Panel.fit(
+                f"{title}\n\n{content}",
+                title=title,
+                border_style="green"
+            )
+        else:
+            toconsole = Text()
+            toconsole.append(md_title)
+            toconsole.append("\n")
+            for line in md_lines:
+                toconsole.append("- ")
+                toconsole.append(line)
+                toconsole.append("\n")
+        
+        self.console.print(toconsole)
+
+    
+        # Log the title **without** timestamp (disable formatter temporarily)
+        for handler in self.logger.handlers:
+            if isinstance(handler, logging.FileHandler):
+                old_formatter = handler.formatter
+                handler.setFormatter(logging.Formatter('%(message)s'))  # no timestamp
+                self.logger.info(md_title)
+                handler.setFormatter(old_formatter)  # restore timestamp formatter
+                handler.flush()
+
+        # Then log each detail line with timestamp
+        for line in md_lines:
+            self.logger.info(line)
+
+
+
+    def check_data_validity(self, ds: xr.Dataset):
         """
         Perform pre-processing checks before irrigation delimitation.
-
+    
         Parameters:
         ds (xr.Dataset): Input dataset containing ETa, ETp, and time dimensions.
-
+    
         Raises:
         ValueError: If critical issues are found in the dataset.
         """
-
+    
         issues = []
-
+    
         # Check for missing time steps
         if 'time' not in ds:
             issues.append("❌ Time dimension is missing in the dataset.")
@@ -49,7 +131,7 @@ def check_data_validity(self, ds: xr.Dataset):
             expected_diff = np.timedelta64(1, 'D')  # Expected daily frequency
             if not np.all(time_diff == expected_diff):
                 issues.append("⚠️ Time data gaps detected. Ensure daily ETa values are continuous.")
-
+    
         # Check for missing pixels (NaNs in ETa or ETp)
         if self.ETa_name in ds:
             missing_pixels_ETA = ds[self.ETa_name].isnull().sum().item()
@@ -57,24 +139,24 @@ def check_data_validity(self, ds: xr.Dataset):
                 issues.append(f"⚠️ ETa contains {missing_pixels_ETA} missing pixels.")
         else:
             issues.append(f"❌ {self.ETa_name} variable is missing in the dataset.")
-
+    
         if self.ETp_name in ds:
             missing_pixels_ETP = ds[self.ETp_name].isnull().sum().item()
             if missing_pixels_ETP > 0:
                 issues.append(f"⚠️ ETp contains {missing_pixels_ETP} missing pixels.")
         else:
             issues.append(f"❌ {self.ETp_name} variable is missing in the dataset.")
-
+    
         # Check CRS consistency
         if not hasattr(ds, 'crs'):
             issues.append("⚠️ CRS information is missing. Ensure all datasets use the same projection.")
-
+    
         # Print warnings or raise errors
         if issues:
             for issue in issues:
                 print(issue)
             raise ValueError("Data validation failed. Please address the above issues before proceeding.")
-
+    
         print("✅ Data validation passed. Ready for irrigation delineation.")
 
     def compute_ratio_ETap_local(
@@ -216,10 +298,39 @@ def check_data_validity(self, ds: xr.Dataset):
         window_cells_x = max(1, int(window_size_x / x_resolution))
         window_cells_y = max(1, int(window_size_y / y_resolution))
 
-        # Apply a moving average using the rolling method
-        reg_analysis = ds_analysis.rolling(
-            x=window_cells_x, y=window_cells_y, center=True
-        ).mean()
+        self.log_panel("\n 🧭 Running compute_regional_ETap()\n")
+        self.log_panel(
+                        "## 📍 Parameters",
+                        **{
+                            "Window Size": f"{window_size_x}m x {window_size_y}m",
+                            "Grid Resolution": f"{x_resolution:.2f}m (x), {y_resolution:.2f}m (y)",
+                            "Window Cells": f"{window_cells_x} (x), {window_cells_y} (y)"
+                        }
+                    )
+
+        ds_analysis = ds_analysis.chunk(
+                                        {'x': window_cells_x, 
+                                         'y': window_cells_y}
+                                        )
+
+        with ProgressBar():
+            reg_analysis = ds_analysis.rolling(
+                x=window_cells_x,
+                y=window_cells_y,
+                center=True
+            ).mean().compute()
+
+
+        # import scipy.ndimage
+        
+        # def fast_rolling_mean(arr, size):
+        #     return scipy.ndimage.uniform_filter(arr, size=size, mode='reflect')
+        
+        # # Apply to your data variable (numpy array)
+        # rolling_result = fast_rolling_mean(ds_analysis['var_name'].values, 
+        #                                    size=(window_cells_y, 
+        #                                          window_cells_x)
+        #                                    )
 
         return reg_analysis
 
@@ -412,36 +523,47 @@ def check_data_validity(self, ds: xr.Dataset):
                                ):
 
 
+        self.log_panel("🚦 Starting irrigation delineation process...")
 
         # Perform pre-checks before processing
-        self.check_data_validity(decision_ds)
-
+        # self.check_data_validity(decision_ds)
+        
+        
         # Compute local and regional ETa/ETp ratios
+        self.log_panel("🔍 Computing local ETa/ETp ratio...", 
+                       message="Starting calculation..."
+                       )       
         decision_ds = self.compute_ratio_ETap_local(decision_ds,
                                                     time_window=time_window,
-                                                    **kwargs
-                                                    )
+                                                    **kwargs)
+    
+        self.log_panel("🌍 Computing [bold]regional[/bold] ETa/ETp ratio...")      
         decision_ds = self.compute_ratio_ETap_regional(decision_ds,
                                                        time_window=time_window,
-                                                       **kwargs
-                                                       )
-
-        # decision_ds['ratio_ETap_local_diff'].sum()
-        # decision_ds['ratio_ETap_local_time_avg'].sum()
-
+                                                       **kwargs)
+    
         # Apply local and regional threshold decision rules
+        self.log_panel("🎯 Applying [bold]local threshold[/bold] decision rule...")
         decision_ds = self.compute_bool_threshold_decision_local(decision_ds)
+    
+        self.log_panel("🧭 Applying [bold]regional threshold[/bold] decision rule...")
         decision_ds = self.compute_bool_threshold_decision_regional(decision_ds)
-
+    
         # Drop initial time steps based on time mask
         time_mask = decision_ds['time'] > np.datetime64('0', 'D')
-
+        self.log_panel("🧹 Cleaning time dimension (dropping initial steps)...")
+    
         # Apply specific rules for rain and irrigation
+        self.log_panel("🌧️ Applying [bold]rain rules[/bold]...")
         decision_ds = self.apply_rules_rain(decision_ds)
+    
+        self.log_panel("🚿 Applying [bold]irrigation rules[/bold]...")
         decision_ds = self.apply_rules_irrigation(decision_ds)
-
+    
         # Classify events based on delineation rules
+        self.log_panel("🏷️ Classifying events...")
         event_type = self.classify_event(decision_ds)
-
+    
+        self.log_panel("✅ [bold green]Irrigation delineation complete![/bold green]")
 
         return decision_ds, event_type
