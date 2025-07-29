@@ -42,14 +42,15 @@ Centum relies on two main models for the testing datasets:
 ## Expected releases roadmap
 
 - [x] V1.0: water delineation algoritm tested for synthetic irrigation time series (generated using AQUACROP)
-- V1.*: 
-  - [ ] test delineation over real field site data 
-  - [ ] result visualisation utilities
+- [ ] V1.*: 
+  - [x] test delineation over real field site data 
+  - [x] result visualisation utilities
   - [ ] ...
-- V2.0: irrigation water quantification 
-- V3.0: type of irrigation identification
-- V4.0: use ET from DA as input to estimate uncertainties
-- V*: 
+- [ ] V2.0: irrigation water quantification
+  - [ ] use of soil land cover maps
+  - [ ] type of irrigation identification
+- [ ] V4.0: use ET from DA as input to estimate uncertainties
+- [ ] V*: 
   - Illegal Water Pumping Detection
   - Ecosystem Resilience (Green water footprint evaluation)
   - QGIS plugin
