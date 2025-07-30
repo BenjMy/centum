@@ -50,6 +50,8 @@ Centum relies on two main models for the testing datasets:
   - [ ] use of soil land cover maps
   - [ ] type of irrigation identification
 - [ ] V3.0: use ET from DA as input to estimate uncertainties
+  - [ ] Soil parm. perturbation
+  - [ ] ET ensemble
 - [ ] V*: 
   - Illegal Water Pumping Detection
   - Ecosystem Resilience (Green water footprint evaluation)
