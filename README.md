@@ -47,8 +47,8 @@ Centum relies on two main models for the testing datasets:
   - [x] result visualisation utilities
   - [ ] ...
 - [ ] V2.0: irrigation water quantification
-  - [ ] use of soil land cover maps
-  - [ ] type of irrigation identification
+  - [ ] use of soil database
+  - [ ] type of irrigation identification (use microwave info!)
 - [ ] V3.0: use ET from DA as input to estimate uncertainties
   - [ ] Soil parm. perturbation
   - [ ] ET ensemble
