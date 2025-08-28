@@ -7,7 +7,7 @@ dependencies:
   - rioxarray
   - geopandas
   - pip
-  - libgdal-hdf5
+  #- libgdal-hdf5
   - xesmf
   - pip:
     - july
