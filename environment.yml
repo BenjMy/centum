@@ -8,8 +8,8 @@ dependencies:
   - geopandas
   - pip
   #- libgdal-hdf5
-  - xesmf
   - pip:
+    - xesmf
     - july
     - pooch
     - geocube
