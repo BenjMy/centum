@@ -10,9 +10,9 @@ Attributes:
     ETp_name (str): Name of the variable representing potential evapotranspiration in the dataset.
                     Default is 'ETp'.
     threshold_local (float): Threshold value for identifying significant changes in local ETa/ETp ratios.
-                              Default is -0.25.
+                              Default is 0.25.
     threshold_regional (float): Threshold value for identifying significant changes in regional ETa/ETp ratios.
-                                Default is -0.25.
+                                Default is 0.25.
     stat (str): Statistical operation to apply to ETa/ETp ratios. Options include 'mean', 'sum', etc.
                 Default is 'mean'.
 '''
@@ -34,8 +34,8 @@ class ETAnalysis:
     
     ETa_name: str = 'ETa'
     ETp_name: str = 'ETp'
-    threshold_local: float = -0.25
-    threshold_regional: float = -0.25
+    threshold_local: float = 0.25
+    threshold_regional: float = 0.25
 
     log_file: str = "ET_analysis_log.md"
     console: Console = field(default_factory=Console, init=False, repr=False)
@@ -191,7 +191,7 @@ class ETAnalysis:
 
         # Compute the absolute temporal difference of the local ratio
         ds_analysis["ratio_ETap_local_diff"] = abs(
-            ds_analysis["ratio_ETap_local"].diff(dim="time")
+            ds_analysis["ratio_ETap_local"].diff(dim="time").shift(time=1)
         )
 
         # Apply rolling time-window mean if time_window is specified
@@ -210,8 +210,9 @@ class ETAnalysis:
         ETa_name: str = "ETa",
         ETp_name: str = "ETp",
         stat: str = "mean",
-        window_size_x: int = 10,  # Window size in km for regional averaging
+        window_size_x: int = -9999,  # Window size in km for regional averaging
         time_window: int = None,  # Rolling time window size
+        **kwargs
     ) -> xr.Dataset:
         """
         Computes the regional ETa/ETp ratio and its temporal differences.
@@ -239,20 +240,24 @@ class ETAnalysis:
 
         if stat == "mean":
             # Compute regional ETa and ETp
-            reg_analysis = self.compute_regional_ETap(
-                ds_analysis, window_size_x=window_size_x,
-                window_size_y=window_size_x
-            )
+            # reg_analysis = self.compute_regional_ETap(
+            #     ds_analysis, window_size_x=window_size_x,
+            #     window_size_y=window_size_x
+            # )
+
+            # reg_analysis = ds_analysis.copy()
 
             # Compute the regional ratio of ETa/ETp
-            ds_analysis["ratio_ETap_regional_spatial_avg"] = (
-                reg_analysis[ETa_name] / reg_analysis[ETp_name]
-            )
+            reg_analysis = (
+                ds_analysis[ETa_name] / ds_analysis[ETp_name]
+            ).mean(dim=["x", "y"])
+            
+            ds_analysis["ratio_ETap_regional_spatial_avg"] = xr.broadcast(reg_analysis, ds_analysis[ETa_name])[0]
 
             # Compute the absolute temporal difference of the regional ratio
             ds_analysis["ratio_ETap_regional_diff"] = abs(
                 ds_analysis["ratio_ETap_regional_spatial_avg"].diff(dim="time")
-            )
+            ).shift(time=1)
 
             # Apply rolling time-window mean if time_window is specified
             if time_window is not None:
@@ -268,8 +273,12 @@ class ETAnalysis:
     def compute_regional_ETap(
         self,
         ds_analysis: xr.Dataset,
-        window_size_x: int = 1000,  # Spatial window size in meters (default: 1 km)
-        window_size_y: int = 1000,  # Spatial window size in meters (default: 1 km)
+        ETa_name: str = "ETa",
+        ETp_name: str = "ETp",
+        window_size_x: int = -9999,  # Spatial window size in meters (default: 1 km)
+        window_size_y: int = -9999,  # Spatial window size in meters (default: 1 km)
+        time_window: int = None,  # Rolling time window size
+        **kwargs
     ) -> xr.Dataset:
         """
         Computes the regional mean of ETa and ETp using a moving window.
@@ -288,49 +297,62 @@ class ETAnalysis:
         xr.Dataset
             A dataset with spatially averaged ETa and ETp for each pixel.
         """
-        # Ensure the dataset has x and y dimensions (e.g., projected coordinates)
-        if not all(dim in ds_analysis.dims for dim in ["x", "y"]):
-            raise ValueError("The dataset must have 'x' and 'y' dimensions in meters.")
 
-        # Compute the number of grid cells corresponding to the window size
-        x_resolution = abs(ds_analysis.x[1] - ds_analysis.x[0])
-        y_resolution = abs(ds_analysis.y[1] - ds_analysis.y[0])
-        window_cells_x = max(1, int(window_size_x / x_resolution))
-        window_cells_y = max(1, int(window_size_y / y_resolution))
-
-        self.log_panel("\n 🧭 Running compute_regional_ETap()\n")
-        self.log_panel(
-                        "## 📍 Parameters",
-                        **{
-                            "Window Size": f"{window_size_x}m x {window_size_y}m",
-                            "Grid Resolution": f"{x_resolution:.2f}m (x), {y_resolution:.2f}m (y)",
-                            "Window Cells": f"{window_cells_x} (x), {window_cells_y} (y)"
-                        }
-                    )
-
-        ds_analysis = ds_analysis.chunk(
-                                        {'x': window_cells_x, 
-                                         'y': window_cells_y}
-                                        )
-
-        with ProgressBar():
-            reg_analysis = ds_analysis.rolling(
-                x=window_cells_x,
-                y=window_cells_y,
-                center=True
-            ).mean().compute()
-
-
-        # import scipy.ndimage
         
-        # def fast_rolling_mean(arr, size):
-        #     return scipy.ndimage.uniform_filter(arr, size=size, mode='reflect')
+        reg_analysis = ds_analysis.copy()
         
-        # # Apply to your data variable (numpy array)
-        # rolling_result = fast_rolling_mean(ds_analysis['var_name'].values, 
-        #                                    size=(window_cells_y, 
-        #                                          window_cells_x)
-        #                                    )
+        # Compute spatial mean for each timestep (1D: time)
+        ETa_mean = ds_analysis[ETa_name].mean(dim=("x", "y"))
+        ETp_mean = ds_analysis[ETp_name].mean(dim=("x", "y"))
+        
+        # Broadcast the time-only mean to the full 3D shape (time, x, y)
+        reg_analysis[ETa_name] = xr.broadcast(ETa_mean, ds_analysis[ETa_name])[0]
+        reg_analysis[ETp_name] = xr.broadcast(ETp_mean, ds_analysis[ETp_name])[0]
+
+        if window_size_x!=-9999:
+            
+            # Ensure the dataset has x and y dimensions (e.g., projected coordinates)
+            if not all(dim in ds_analysis.dims for dim in ["x", "y"]):
+                raise ValueError("The dataset must have 'x' and 'y' dimensions in meters.")
+
+            # Compute the number of grid cells corresponding to the window size
+            x_resolution = abs(ds_analysis.x[1] - ds_analysis.x[0])
+            y_resolution = abs(ds_analysis.y[1] - ds_analysis.y[0])
+            window_cells_x = max(1, int(window_size_x / x_resolution))
+            window_cells_y = max(1, int(window_size_y / y_resolution))
+
+            self.log_panel("\n 🧭 Running compute_regional_ETap()\n")
+            self.log_panel(
+                            "## 📍 Parameters",
+                            **{
+                                "Window Size": f"{window_size_x}m x {window_size_y}m",
+                                "Grid Resolution": f"{x_resolution:.2f}m (x), {y_resolution:.2f}m (y)",
+                                "Window Cells": f"{window_cells_x} (x), {window_cells_y} (y)"
+                            }
+                        )
+            
+            ds_analysis = ds_analysis.chunk(
+                                            {'x': window_cells_x, 
+                                             'y': window_cells_y}
+                                            )
+            with ProgressBar():
+                reg_analysis = ds_analysis.rolling(
+                    x=window_cells_x,
+                    y=window_cells_y,
+                    center=True
+                ).mean(skipna=True).compute()
+    
+    
+            # import scipy.ndimage
+            
+            # def fast_rolling_mean(arr, size):
+            #     return scipy.ndimage.uniform_filter(arr, size=size, mode='reflect')
+            
+            # # Apply to your data variable (numpy array)
+            # rolling_result = fast_rolling_mean(ds_analysis['var_name'].values, 
+            #                                    size=(window_cells_y, 
+            #                                          window_cells_x)
+            #                                    )
 
         return reg_analysis
 
@@ -371,7 +393,7 @@ class ETAnalysis:
 
 
     def compute_bool_threshold_decision_local(self, ds_analysis: xr.Dataset,
-                                              checkp: str = "ratio_ETap_local_time_avg") -> xr.Dataset:
+                                              checkp: str = "ratio_ETap_local_diff") -> xr.Dataset:
         """
         Computes a boolean threshold decision for the local ETa/ETp ratio.
 
@@ -381,7 +403,7 @@ class ETAnalysis:
             The dataset containing the local ETa/ETp ratio data.
         checkp : str, optional
             The name of the variable in the dataset to check against the threshold.
-            Default is 'ratio_ETap_local_time_avg'.
+            Default is 'ratio_ETap_local_diff'.
 
         Returns
         -------
@@ -389,12 +411,16 @@ class ETAnalysis:
             The updated dataset with a new variable `threshold_local` indicating where
             the specified variable exceeds the threshold.
         """
+        
         ds_analysis["threshold_local"] = xr.where(ds_analysis[checkp] > self.threshold_local, True, False)
+        
+        # np.sum(ds_analysis["threshold_local"])
+        
         return ds_analysis
 
     def compute_bool_threshold_decision_regional(self,
                                                  ds_analysis: xr.Dataset,
-                                                 checkp: str = "ratio_ETap_regional_spatial_avg_time_avg") -> xr.Dataset:
+                                                 checkp: str = "ratio_ETap_regional_diff") -> xr.Dataset:
         """
         Computes a boolean threshold decision for the regional ETa/ETp ratio.
 
@@ -412,6 +438,7 @@ class ETAnalysis:
             The updated dataset with a new variable `threshold_regional` indicating where
             the specified variable exceeds the threshold.
         """
+        print(f'You use a regional threshold of: {self.threshold_regional}')
         ds_analysis["threshold_regional"] = xr.where(ds_analysis[checkp] > self.threshold_regional, True, False)
         return ds_analysis
 
@@ -445,8 +472,8 @@ class ETAnalysis:
 
         # Condition 2: Comparison between regional and local ETa/ETp ratios
         decision_ds['condRain2'] = (
-                                    abs(decision_ds['ratio_ETap_regional_spatial_avg_time_avg'])
-                                    >= abs(decision_ds['ratio_ETap_local_time_avg'])
+                                    abs(decision_ds['ratio_ETap_regional_diff'])
+                                    >= abs(decision_ds['ratio_ETap_local_diff'])
                                     )
         # Final condition for rain
         decision_ds['condRain'] = decision_ds['condRain1'] & decision_ds['condRain2']
@@ -469,15 +496,32 @@ class ETAnalysis:
         """
         # Condition 1: Threshold for local ETa/ETp ratio
         decision_ds['condIrrigation1'] = decision_ds['threshold_local'] == 1
-
+        # np.sum(decision_ds['condIrrigation1'])
+        
         # Condition 2: Comparison between local and regional ETa/ETp ratios (local ratio must be greater than 1.5 times the regional ratio)
-        a = abs(decision_ds['ratio_ETap_local_time_avg'])
-        b = abs(1.5 * decision_ds['ratio_ETap_regional_spatial_avg_time_avg'])
+        a = abs(decision_ds['ratio_ETap_local_diff'])
+            
+        b = abs(1.5 * decision_ds['ratio_ETap_regional_diff'])
         decision_ds['condIrrigation2'] = a > b
+
+        # # Use a rolling window defined by a time offset (e.g., 2 days)
+        # rolling = decision_ds['ratio_ETap_regional_diff'].rolling(time=5, center=True)       
+        # # Compute rolling mean and std
+        # rolling_mean = rolling.mean()
+        # rolling_std = rolling.std()
+        
+        # # Dynamic threshold: baseline + 2 × local variability
+        # b = rolling_mean + 2 * rolling_std
+        
+        # # Absolute difference in local vs regional
+        # a = abs(decision_ds['ratio_ETap_local_diff'])
+        
+        # Threshold: local diff must exceed regional mean + N std
+        # decision_ds['condIrrigation2'] = a > b
 
         # Final condition for irrigation
         decision_ds['condIrrigation'] = decision_ds['condIrrigation1'] & decision_ds['condIrrigation2']
-
+        
         return decision_ds
 
     def classify_event(
@@ -516,8 +560,6 @@ class ETAnalysis:
 
     def irrigation_delineation(self,
                                decision_ds,
-                               threshold_local=0.25,
-                               threshold_regional=0.25,
                                time_window=10,
                                **kwargs
                                ):

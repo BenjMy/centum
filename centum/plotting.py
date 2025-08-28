@@ -5,6 +5,8 @@ Functions to plot
 """
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+from matplotlib.colors import Normalize
 
 #%%
 def plot_irrigation_schedule(event_type,time_steps,fig,axes):
@@ -51,3 +53,35 @@ def plot_irrigation_schedule(event_type,time_steps,fig,axes):
     cbar.set_ticklabels(['No input', 'irrigation', 'rain'])
     
     pass
+
+
+
+
+def plot_monthly_volume_mm(ds, variable='volume_mm',axs=None, cmap='viridis'):
+    time_index = pd.to_datetime(ds.time.values)
+    months = time_index.to_period('M').unique()
+    axsf = axs.flatten()
+
+    vmin = 0
+    vmax = float(ds[variable].max())
+    norm = Normalize(vmin=vmin, vmax=vmax)
+
+    for i, month in enumerate(months):
+        mask = time_index.to_period('M') == month
+        data = ds[variable].sel(time=mask).squeeze().values
+
+        alpha = np.clip((data - vmin) / (vmax - vmin), 0.05, 1.0)
+        rgba = plt.cm.get_cmap(cmap)(norm(data))
+        rgba[..., -1] = alpha
+
+        axsf[i].imshow(rgba, aspect='auto')
+        axsf[i].set_title(month.strftime('%B %Y'))
+        axsf[i].set_yticks([])
+
+    for j in range(i + 1, np.shape(axs)[0] * np.shape(axs)[1]):
+        axsf[j].axis('off')
+
+    return norm
+
+
+
