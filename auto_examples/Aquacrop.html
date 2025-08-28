@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -202,6 +202,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api/centum.html">API documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/_autosummary/centum.html">centum</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/centum.accounting.html">centum.accounting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/centum.delineation.html">centum.delineation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/centum.irrigation_district.html">centum.irrigation_district</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/centum.plotting.html">centum.plotting</a></li>
@@ -409,14 +410,14 @@ Pooch is used to manage the dataset downloads from the specified GitHub reposito
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds_analysis_EO_0.netcdf&#39; from &#39;https://github.com/BenjMy/test_AQUACROP_centum_dataset/raw/refs/heads/main/ds_analysis_EO_0.netcdf&#39; to &#39;/home/runner/.cache/AQUACROP_project&#39;.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1997/1458405863.py:10: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a &#39;CFTimedeltaCoder&#39; instance.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2204/1458405863.py:10: FutureWarning: In a future version, xarray will not decode timedelta values based on the presence of a timedelta-like units attribute by default. Instead it will rely on the presence of a timedelta64 dtype attribute, which is now xarray&#39;s default way of encoding timedelta64 values. To continue decoding timedeltas based on the presence of a timedelta-like units attribute, users will need to explicitly opt-in by passing True or CFTimedeltaCoder(decode_via_units=True) to decode_timedelta. To silence this warning, set decode_timedelta to True, False, or a &#39;CFTimedeltaCoder&#39; instance.
   AQUACROP_ds = xr.load_dataset(AQUACROP_ET_filename)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f2786223370&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f1a6c556b30&gt;
 </pre></div>
 </div>
-<img alt="../_images/d3ccc07f68582ede9f955ed904de780f84a7be4866f7b38b8e3117b0706496c1.png" src="../_images/d3ccc07f68582ede9f955ed904de780f84a7be4866f7b38b8e3117b0706496c1.png" />
+<img alt="../_images/b8fd8aa5435aa3553e3a3d4a774845db95f00bdecad03f8b649c52ed37d81afc.png" src="../_images/b8fd8aa5435aa3553e3a3d4a774845db95f00bdecad03f8b649c52ed37d81afc.png" />
 </div>
 </div>
 </section>

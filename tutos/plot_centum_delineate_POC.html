@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -202,6 +202,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api/centum.html">API documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/_autosummary/centum.html">centum</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/centum.accounting.html">centum.accounting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/centum.delineation.html">centum.delineation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/centum.irrigation_district.html">centum.irrigation_district</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/centum.plotting.html">centum.plotting</a></li>
@@ -436,12 +437,12 @@ Affiliation: ICA-CSIC</p>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;ds_analysis_EO_0.netcdf&#39; from &#39;https://github.com/BenjMy/test_AQUACROP_centum_dataset/raw/refs/heads/main/ds_analysis_EO_0.netcdf&#39; to &#39;/home/runner/.cache/POC_project&#39;.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2116/2650687659.py:10: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a &#39;CFTimedeltaCoder&#39; instance.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2319/2650687659.py:10: FutureWarning: In a future version, xarray will not decode timedelta values based on the presence of a timedelta-like units attribute by default. Instead it will rely on the presence of a timedelta64 dtype attribute, which is now xarray&#39;s default way of encoding timedelta64 values. To continue decoding timedeltas based on the presence of a timedelta-like units attribute, users will need to explicitly opt-in by passing True or CFTimedeltaCoder(decode_via_units=True) to decode_timedelta. To silence this warning, set decode_timedelta to True, False, or a &#39;CFTimedeltaCoder&#39; instance.
   ds_analysis_EO = xr.load_dataset(filename)
 Downloading file &#39;ds_analysis_baseline_0.netcdf&#39; from &#39;https://github.com/BenjMy/test_AQUACROP_centum_dataset/raw/refs/heads/main/ds_analysis_baseline_0.netcdf&#39; to &#39;/home/runner/.cache/POC_project&#39;.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2116/2650687659.py:13: FutureWarning: In a future version of xarray decode_timedelta will default to False rather than None. To silence this warning, set decode_timedelta to True, False, or a &#39;CFTimedeltaCoder&#39; instance.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2319/2650687659.py:13: FutureWarning: In a future version, xarray will not decode timedelta values based on the presence of a timedelta-like units attribute by default. Instead it will rely on the presence of a timedelta64 dtype attribute, which is now xarray&#39;s default way of encoding timedelta64 values. To continue decoding timedeltas based on the presence of a timedelta-like units attribute, users will need to explicitly opt-in by passing True or CFTimedeltaCoder(decode_via_units=True) to decode_timedelta. To silence this warning, set decode_timedelta to True, False, or a &#39;CFTimedeltaCoder&#39; instance.
   ds_analysis_baselin = xr.load_dataset(filename)
 </pre></div>
 </div>
@@ -462,10 +463,10 @@ Downloading file &#39;ds_analysis_baseline_0.netcdf&#39; from &#39;https://githu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f1c999d3dc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f2d442b7100&gt;
 </pre></div>
 </div>
-<img alt="../_images/d3ccc07f68582ede9f955ed904de780f84a7be4866f7b38b8e3117b0706496c1.png" src="../_images/d3ccc07f68582ede9f955ed904de780f84a7be4866f7b38b8e3117b0706496c1.png" />
+<img alt="../_images/b8fd8aa5435aa3553e3a3d4a774845db95f00bdecad03f8b649c52ed37d81afc.png" src="../_images/b8fd8aa5435aa3553e3a3d4a774845db95f00bdecad03f8b649c52ed37d81afc.png" />
 </div>
 </div>
 </section>
@@ -493,45 +494,42 @@ Downloading file &#39;ds_analysis_baseline_0.netcdf&#39; from &#39;https://githu
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/xarray/core/dataset.py</span> in <span class="ni">?</span><span class="nt">(self, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1512</span>             <span class="n">variable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1513</span>         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1514</span>             <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">variable</span> <span class="o">=</span> <span class="n">_get_virtual_variable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1515</span> 
+<span class="nn">/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/xarray/core/dataset.py</span> in <span class="ni">?</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1154</span>             <span class="n">variable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1155</span>         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1156</span>             <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">variable</span> <span class="o">=</span> <span class="n">_get_virtual_variable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1157</span> 
 
 <span class="ne">KeyError</span>: &#39;ETa&#39;
 
 <span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/xarray/core/dataset.py</span> in <span class="ni">?</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1622</span>                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1623</span>                     <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Hint: use a list to select multiple variables, for example `ds[</span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="si">}</span><span class="s2">]`&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1624</span>                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-<span class="g g-Whitespace">   </span><span class="mi">1625</span> 
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/xarray/core/dataset.py:1261,</span> in <span class="ni">Dataset.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1260</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1261</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_construct_dataarray</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1262</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/xarray/core/dataset.py</span> in <span class="ni">?</span><span class="nt">(self, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1512</span>             <span class="n">variable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1513</span>         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1514</span>             <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">variable</span> <span class="o">=</span> <span class="n">_get_virtual_variable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1515</span> 
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/xarray/core/dataset.py:1156,</span> in <span class="ni">Dataset._construct_dataarray</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1155</span> <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1156</span>     <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">variable</span> <span class="o">=</span> <span class="n">_get_virtual_variable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1158</span> <span class="n">needed_dims</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">variable</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/xarray/core/dataset.py</span> in <span class="ni">?</span><span class="nt">(variables, key, dim_sizes)</span>
-<span class="g g-Whitespace">    </span><span class="mi">219</span>     <span class="n">split_key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_key</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">221</span>         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span> 
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/xarray/core/dataset_utils.py:79,</span> in <span class="ni">_get_virtual_variable</span><span class="nt">(variables, key, dim_sizes)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_key</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">79</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="n">ref_name</span><span class="p">,</span> <span class="n">var_name</span> <span class="o">=</span> <span class="n">split_key</span>
 
 <span class="ne">KeyError</span>: &#39;ETa&#39;
 
 <span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
 
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipykernel_2116/2577214387.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="nn">/tmp/ipykernel_2319/2577214387.py</span> in <span class="ni">?</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">scenario_analysis_usingET</span> <span class="o">=</span> <span class="n">ETAnalysis</span><span class="p">()</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">decision_ds</span><span class="p">,</span> <span class="n">event_type</span> <span class="o">=</span> <span class="n">scenario_analysis_usingET</span><span class="o">.</span><span class="n">irrigation_delineation</span><span class="p">(</span><span class="n">ds_analysis_EO</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/centum-0.1.5-py3.10.egg/centum/delineation.py</span> in <span class="ni">?</span><span class="nt">(self, decision_ds, threshold_local, threshold_regional, time_window)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/centum-0.1.6-py3.10.egg/centum/delineation.py</span> in <span class="ni">?</span><span class="nt">(self, decision_ds, threshold_local, threshold_regional, time_window)</span>
 <span class="g g-Whitespace">    </span><span class="mi">379</span>                                <span class="n">time_window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">380</span>                                <span class="p">):</span>
 <span class="g g-Whitespace">    </span><span class="mi">381</span> 
@@ -541,7 +539,7 @@ Downloading file &#39;ds_analysis_baseline_0.netcdf&#39; from &#39;https://githu
 <span class="g g-Whitespace">    </span><span class="mi">385</span> 
 <span class="g g-Whitespace">    </span><span class="mi">386</span>         <span class="c1"># Apply local and regional threshold decision rules</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/centum-0.1.5-py3.10.egg/centum/delineation.py</span> in <span class="ni">?</span><span class="nt">(self, ds_analysis, ETa_name, ETp_name, time_window)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/centum-0.1.6-py3.10.egg/centum/delineation.py</span> in <span class="ni">?</span><span class="nt">(self, ds_analysis, ETa_name, ETp_name, time_window)</span>
 <span class="g g-Whitespace">     </span><span class="mi">54</span>         <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span>
 <span class="g g-Whitespace">     </span><span class="mi">55</span>             <span class="n">The</span> <span class="n">dataset</span> <span class="k">with</span> <span class="n">added</span> <span class="n">local</span> <span class="n">ETa</span><span class="o">/</span><span class="n">ETp</span> <span class="n">ratio</span> <span class="ow">and</span> <span class="n">temporal</span> <span class="n">differences</span><span class="o">.</span>
 <span class="g g-Whitespace">     </span><span class="mi">56</span>         <span class="s2">&quot;&quot;&quot;</span>
@@ -551,15 +549,15 @@ Downloading file &#39;ds_analysis_baseline_0.netcdf&#39; from &#39;https://githu
 <span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2">         # Compute the absolute temporal difference of the local ratio</span>
 <span class="g g-Whitespace">     </span><span class="mi">61</span><span class="s2">         ds_analysis[&quot;ratio_ETap_local_diff&quot;] = abs(</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/xarray/core/dataset.py</span> in <span class="ni">?</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1620</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1621</span><span class="s2">                 # If someone attempts `ds[&#39;foo&#39; , &#39;bar&#39;]` instead of `ds[[&#39;foo&#39;, &#39;bar&#39;]]`</span>
-<span class="g g-Whitespace">   </span><span class="mi">1622</span><span class="s2">                 if isinstance(key, tuple):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1623</span><span class="s2">                     message += f&quot;</span><span class="se">\n</span><span class="s2">Hint: use a list to select multiple variables, for example `ds[{list(key)}]`&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1624</span><span class="s2">                 raise KeyError(message) from e</span>
-<span class="g g-Whitespace">   </span><span class="mi">1625</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1626</span><span class="s2">         if utils.iterable_of_hashable(key):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1627</span><span class="s2">             return self._copy_listed(key)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages/xarray/core/dataset.py</span> in <span class="ni">?</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1270</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span><span class="s2">                 # If someone attempts `ds[&#39;foo&#39; , &#39;bar&#39;]` instead of `ds[[&#39;foo&#39;, &#39;bar&#39;]]`</span>
+<span class="g g-Whitespace">   </span><span class="mi">1272</span><span class="s2">                 if isinstance(key, tuple):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1273</span><span class="s2">                     message += f&quot;</span><span class="se">\n</span><span class="s2">Hint: use a list to select multiple variables, for example `ds[{list(key)}]`&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1274</span><span class="s2">                 raise KeyError(message) from e</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1276</span><span class="s2">         if utils.iterable_of_hashable(key):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1277</span><span class="s2">             return self._copy_listed(key)</span>
 
 <span class="ne">KeyError</span>: &quot;No variable named &#39;ETa&#39;. Did you mean one of (&#39;ETp&#39;,)?&quot;
 </pre></div>

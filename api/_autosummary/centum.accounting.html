@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>centum.utils &#8212; Centum</title>
+    <title>centum.accounting &#8212; Centum</title>
   
   
   
@@ -61,10 +61,11 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/centum.utils';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/centum.accounting';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="centum.plotting" href="centum.plotting.html" />
+    <link rel="next" title="centum.delineation" href="centum.delineation.html" />
+    <link rel="prev" title="centum" href="centum.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -201,11 +202,11 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../centum.html">API documentation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="centum.html">centum</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="centum.accounting.html">centum.accounting</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">centum.accounting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="centum.delineation.html">centum.delineation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="centum.irrigation_district.html">centum.irrigation_district</a></li>
 <li class="toctree-l3"><a class="reference internal" href="centum.plotting.html">centum.plotting</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">centum.utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="centum.utils.html">centum.utils</a></li>
 </ul>
 </details></li>
 </ul>
@@ -264,7 +265,7 @@
       
       
       
-      <li><a href="../../_sources/api/_autosummary/centum.utils.rst" target="_blank"
+      <li><a href="../../_sources/api/_autosummary/centum.accounting.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -346,7 +347,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>centum.utils</h1>
+    <h1>centum.accounting</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -360,13 +361,51 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-centum.utils">
-<span id="centum-utils"></span><h1>centum.utils<a class="headerlink" href="#module-centum.utils" title="Link to this heading">#</a></h1>
-<p>Utilities for analyzing evapotranspiration (ET) data using xarray.</p>
+  <section id="module-centum.accounting">
+<span id="centum-accounting"></span><h1>centum.accounting<a class="headerlink" href="#module-centum.accounting" title="Link to this heading">#</a></h1>
 <p class="rubric">Functions</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_CLC_code_def</span></code>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">aggregate_volume</span></code>(da_volume[, freq])</p></td>
+<td><p>Aggregate volume data over time.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_crs_consistent</span></code>(ds1, ds2)</p></td>
+<td><p>Check if CRS is defined and consistent between two rioxarray-enabled datasets.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_dimensions_consistent</span></code>(ds1, ds2)</p></td>
+<td><p>Check if dimensions and time coordinates are consistent between two xarray Datasets.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_nan_mask_t0_consistent</span></code>(ds1, ds2[, ...])</p></td>
+<td><p>Check if NaN mask at the first time step is spatially consistent between two datasets for the given pair of variables.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_nb_of_nan_over_time</span></code>(ds[, variable])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_time_consistent</span></code>(ds1, ds2)</p></td>
+<td><p>Check if both datasets have a 'time' coordinate and that they are identical.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_net_irrigation</span></code>(ds_baseline, ds_eo[, ...])</p></td>
+<td><p>Compute net irrigation as the difference between ETa baseline and ETa EO.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_pixel_area</span></code>(da)</p></td>
+<td><p>Compute the approximate area (m²) of each pixel based on coordinate spacing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_water_accounting</span></code>(ds[, variable, freq])</p></td>
+<td><p>Compute water accounting volumes and mean ETa aggregated by time frequency.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">et_mm_day_to_m3_day</span></code>(da_etha, pixel_area_m2)</p></td>
+<td><p>Convert ETa from mm/day to volume m³/day per pixel.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_monthly_et</span></code>(monthly_ds[, var])</p></td>
+<td><p>Plot spatially averaged monthly ETa.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Classes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Accounting</span></code>(ds_baseline, ds_EO[, variable, ...])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -405,13 +444,22 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="centum.plotting.html"
+       href="centum.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">centum.plotting</p>
+        <p class="prev-next-title">centum</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="centum.delineation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">centum.delineation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

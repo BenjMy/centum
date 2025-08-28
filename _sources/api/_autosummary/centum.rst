@@ -10,6 +10,7 @@
    :toctree:
    :recursive:
 
+   accounting
    delineation
    irrigation_district
    plotting
