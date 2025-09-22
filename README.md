@@ -12,6 +12,9 @@ pip install centum
 # 💦  Centum
 Centum, derived from the Latin word for "a hundred," is a Python package designed to streamline water accounting through energy and water balance modeling inputs. It equips users with tools to enhance water use efficiency, detect illegal water pumping, and protect essential mountain ecosystems, addressing key water management challenges.
 
+<img width="2911" height="1246" alt="image" src="https://github.com/user-attachments/assets/7024d26a-95c5-491a-ac28-c8787a6ce8cf" />
+
+
 ## 🔍 Key inputs
 For **irrigation water delimitation**:
 - ETa and ETp (single NetCDF file) from Earth Observations
